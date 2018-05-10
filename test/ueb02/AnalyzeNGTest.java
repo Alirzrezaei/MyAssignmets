@@ -23,5 +23,12 @@ public class AnalyzeNGTest {
         int [] pos2 = {3, 5};
         assertEquals(4, Analyze.distance(pos1, pos2)); 
     }
+    @Test
+    public void testCalcDistanceBetween_invalid() {
+        int [] pos1 = {2, 2};
+        int [] pos2 = {3, 5};
+        assertEquals(4, Analyze.distance(pos1, pos2)); 
+    }
+    
     
 }
