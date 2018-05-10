@@ -35,6 +35,12 @@ public class AnalyzeNGTest {
         int [] pos2 = {3, 5};
         assertEquals(Integer.MAX_VALUE, Analyze.distance(pos1, pos2)); 
     }
+    @Test
+    public void testCalcDistanceBetween_invalidAllValue() {
+        int [] pos1 = {-1, 13};
+        int [] pos2 = {12, -3};
+        assertEquals(Integer.MAX_VALUE, Analyze.distance(pos1, pos2)); 
+    }
    
     
 }
