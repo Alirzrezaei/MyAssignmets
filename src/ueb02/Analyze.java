@@ -46,15 +46,13 @@ public class Analyze {
         //Math.ceil(), Math.sqrt(), Math.pow() may be used
         //TODO insert code that makes sense
         
-        if( ((((((pos1[0] > Data.getMapDimensions()[0] || pos2[0] > Data.getMapDimensions()[0]) || 
-                pos1[1] > Data.getMapDimensions()[1]) || pos2[1] > Data.getMapDimensions()[1]) ||
-                pos1[0] < 0) || pos1[1] < 0) || pos2[0] < 0) || pos2[1] < 0)
-                {
-                    return Integer.MAX_VALUE;
-        } else {
+        if( isValidPosition(pos1) && isValidPosition(pos2))
+        {
             int distance = (int) Math.ceil(Math.sqrt(Math.pow((pos2[0] - pos1[0]), 2) +
                     Math.pow((pos2[1] - pos1[1]), 2)));
             return distance;
+        } else {
+            return Integer.MAX_VALUE;
         }
         
     }
@@ -67,7 +65,8 @@ public class Analyze {
      */
     private static boolean isValidPosition(int[] pos) {
         //TODO insert code that makes sense
-        return false;
+        return ((pos[1] <= Data.getMapDimensions()[1] && pos[0] <= Data.getMapDimensions()[0]) &&
+                (pos[0] >= 0 && pos[1] >= 0));
     }
 //</editor-fold>
 
