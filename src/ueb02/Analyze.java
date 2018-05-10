@@ -46,14 +46,17 @@ public class Analyze {
         //Math.ceil(), Math.sqrt(), Math.pow() may be used
         //TODO insert code that makes sense
         
-        if( pos1[0] <= Data.getMapDimensions()[0] || pos2[0] <= Data.getMapDimensions()[0] ||
-                pos1[1] <= Data.getMapDimensions()[1] || pos2[1] <= Data.getMapDimensions()[1])
+        if( ((((((pos1[0] > Data.getMapDimensions()[0] || pos2[0] > Data.getMapDimensions()[0]) || 
+                pos1[1] > Data.getMapDimensions()[1]) || pos2[1] > Data.getMapDimensions()[1]) ||
+                pos1[0] < 0) || pos1[1] < 0) || pos2[0] < 0) || pos2[1] < 0)
                 {
-        int distance = (int) Math.ceil(Math.sqrt(Math.pow((pos2[0] - pos1[0]), 2) +
-                Math.pow((pos2[1] - pos1[1]), 2)));
-        return distance;
+                    return Integer.MAX_VALUE;
+        } else {
+            int distance = (int) Math.ceil(Math.sqrt(Math.pow((pos2[0] - pos1[0]), 2) +
+                    Math.pow((pos2[1] - pos1[1]), 2)));
+            return distance;
         }
-        return Integer.MAX_VALUE;
+        
     }
     
     /**
