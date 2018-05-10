@@ -45,9 +45,14 @@ public class Analyze {
     private static int calcDistanceBetween(int[] pos1, int[] pos2) {
         //Math.ceil(), Math.sqrt(), Math.pow() may be used
         //TODO insert code that makes sense
+        
+        if( pos1[0] <= Data.getMapDimensions()[0] || pos2[0] <= Data.getMapDimensions()[0] ||
+                pos1[1] <= Data.getMapDimensions()[1] || pos2[1] <= Data.getMapDimensions()[1])
+                {
         int distance = (int) Math.ceil(Math.sqrt(Math.pow((pos2[0] - pos1[0]), 2) +
                 Math.pow((pos2[1] - pos1[1]), 2)));
         return distance;
+        }
         return Integer.MAX_VALUE;
     }
     
