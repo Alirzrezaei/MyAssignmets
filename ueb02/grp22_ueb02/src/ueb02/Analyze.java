@@ -165,5 +165,8 @@ public class Analyze {
     public static void resetToOrigState() {
         //TODO insert code that makes sense
     }
+    public static int distance(int[] pos1, int[] pos2){
+        return calcDistanceBetween(pos1, pos2); 
+    }
 
 }
