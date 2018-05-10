@@ -35,6 +35,6 @@ public class AnalyzeNGTest {
         int [] pos2 = {3, 5};
         assertEquals(Integer.MAX_VALUE, Analyze.distance(pos1, pos2)); 
     }
-    
+   
     
 }
