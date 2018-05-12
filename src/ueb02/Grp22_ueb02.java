@@ -4,7 +4,7 @@ package ueb02;
  * Simulating the delivery of an order-series by a drone.
  * @author Capt'n Mo himself
  */
-public class Grpxx_ueb02 {
+public class Grp22_ueb02 {
 
     /**
      * This program calculates for every given order scenario the end-snapshot
@@ -24,6 +24,7 @@ public class Grpxx_ueb02 {
             Analyze.transportOrdersOfOneSeries(order);
             Analyze.printCurrentState();
         }
+        System.out.println(Data.getMapDimensions()[0]);
     }
 
 }

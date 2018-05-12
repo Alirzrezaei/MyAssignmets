@@ -34,7 +34,7 @@ public class Analyze {
      * 
      */ 
     //TODO insert code that makes sense
-    private static int [][][] map = Data.getMap();
+    //public static int [][][] map = Data.getMap();
     /**
      * the current position of the Drone. Default is POS_SERVICE. {@code posDrone}
      */
@@ -92,7 +92,7 @@ public class Analyze {
     private static int flyDroneTo(int[] pos) {
         //TODO insert code that makes sense
         if(isValidPosition(pos)){
-            unites = calcDistanceBetween(posDrone, pos); 
+            unites += calcDistanceBetween(posDrone, pos); 
             posDrone = pos.clone(); 
             return unites; 
         }else {
