@@ -13,9 +13,12 @@ public class Analyze {
 //<editor-fold defaultstate="collapsed" desc="constants">
     /** signs to show for printing the map. */
     //TODO insert code that makes sense
-    
+    private final char WAREHOUSE = 'W';
+    private final char EMPTY = 'E'; 
+    private final char CUSTOMER = 'C';
     /** position of service-station of the drone {@code POS_SERVICE}*/
     //TODO insert code that makes sense
+    private final int [] POS_SERVICE = {0, 0};
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc="attributes">
@@ -23,14 +26,18 @@ public class Analyze {
      * the amount of units the drone flew. Default is 0. {@code units}
      */
     //TODO insert code that makes sense
+    private int unites = 0; 
     /**
      * the current map working on. Default is the Map from Data. {@code map}
-     */
+     * 
+     */ 
     //TODO insert code that makes sense
+    private int [][][] map = Data.getMap();
     /**
      * the current position of the Drone. Default is POS_SERVICE. {@code posDrone}
      */
     //TODO insert code that makes sense
+    public int [] posDrone = {0, 0};
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="helping methods">
@@ -82,7 +89,10 @@ public class Analyze {
      */
     private static int flyDroneTo(int[] pos) {
         //TODO insert code that makes sense
-        return 0; 
+        if(isValidPosition(pos)){
+        
+        }
+        return -1; 
     }
     
     /**
