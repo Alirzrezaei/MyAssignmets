@@ -10,15 +10,17 @@ import java.lang.Math;
  */
 public class Analyze {
     
+    
+    
 //<editor-fold defaultstate="collapsed" desc="constants">
     /** signs to show for printing the map. */
     //TODO insert code that makes sense
     private final char WAREHOUSE = 'W';
-    private final char EMPTY = 'E'; 
-    private final char CUSTOMER = 'C';
+    private static final char EMPTY = 'E'; 
+    private static final char CUSTOMER = 'C';
     /** position of service-station of the drone {@code POS_SERVICE}*/
     //TODO insert code that makes sense
-    private final int [] POS_SERVICE = {0, 0};
+    private static final int [] POS_SERVICE = {0, 0};
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc="attributes">
@@ -26,18 +28,18 @@ public class Analyze {
      * the amount of units the drone flew. Default is 0. {@code units}
      */
     //TODO insert code that makes sense
-    private int unites = 0; 
+    private static  int unites = 0; 
     /**
      * the current map working on. Default is the Map from Data. {@code map}
      * 
      */ 
     //TODO insert code that makes sense
-    private int [][][] map = Data.getMap();
+    private static int [][][] map = Data.getMap();
     /**
      * the current position of the Drone. Default is POS_SERVICE. {@code posDrone}
      */
     //TODO insert code that makes sense
-    public int [] posDrone = {0, 0};
+    private static int [] posDrone = {0, 0};
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="helping methods">
@@ -85,14 +87,18 @@ public class Analyze {
      * If the given position isn_t valid, a message on serr is shown.
      *
      * @param pos the position to fly to
-     * @return the distance flewn by the drone; if the drone cannot fly -1 is returned
+     * @return the distance flown by the drone; if the drone cannot fly -1 is returned
      */
     private static int flyDroneTo(int[] pos) {
         //TODO insert code that makes sense
         if(isValidPosition(pos)){
-        
-        }
-        return -1; 
+            unites = calcDistanceBetween(posDrone, pos); 
+            posDrone = pos.clone(); 
+            return unites; 
+        }else {
+            System.err.print("wrong position is given. ");
+            return -1;  
+         } 
     }
     
     /**
@@ -176,6 +182,9 @@ public class Analyze {
     }
     public static int distance(int[] pos1, int[] pos2){
         return calcDistanceBetween(pos1, pos2); 
+    }
+    public static int flownDrone(int [] pos){
+        return flyDroneTo(pos); 
     }
 
 }
