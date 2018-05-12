@@ -42,11 +42,27 @@ public class AnalyzeNGTest {
         int [] pos2 = {12, -3};
         assertEquals(Integer.MAX_VALUE, Analyze.distance(pos1, pos2)); 
     }
-  
+    /*****************************************/
     @Test
     public void testFlyDroneTo_trueCase(){
-        int [] pos = {5, 5}; 
-        assertEquals(8, Analyze.flownDrone(pos)); 
+        //flownDrone is a helper method
+        int [] pos1 = {5, 5}; 
+        assertEquals(8, Analyze.flownDrone(pos1)); 
+        int [] pos2 = {2, 2}; 
+        assertEquals(13, Analyze.flownDrone(pos2)); 
+        int [] pos3 = {0, 0};
+        assertEquals(16, Analyze.flownDrone(pos3)); 
     }
-    
+    @Test
+    public void testFlyDroneTo_invalidIndex(){
+        //the dimension of the map is 10x7
+        //flownDrone is a helper method
+        int [] pos1 = {10, 8}; 
+        assertEquals(-1, Analyze.flownDrone(pos1)); 
+        int [] pos2 = {11, 7}; 
+        assertEquals(-1, Analyze.flownDrone(pos2)); 
+        int [] pos3 = {-4, -4}; 
+        assertEquals(-1, Analyze.flownDrone(pos3)); 
+        
+    }
 }
