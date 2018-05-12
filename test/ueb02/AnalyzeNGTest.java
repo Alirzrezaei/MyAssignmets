@@ -22,6 +22,7 @@ public class AnalyzeNGTest {
         int [] pos1 = {2, 2};
         int [] pos2 = {3, 5};
         assertEquals(4, Analyze.distance(pos1, pos2)); 
+        
     }
      @Test
     public void testCalcDistanceBetween_invalidValue() {
@@ -41,6 +42,11 @@ public class AnalyzeNGTest {
         int [] pos2 = {12, -3};
         assertEquals(Integer.MAX_VALUE, Analyze.distance(pos1, pos2)); 
     }
-   
+  
+    @Test
+    public void testFlyDroneTo_trueCase(){
+        int [] pos = {5, 5}; 
+        assertEquals(8, Analyze.flownDrone(pos)); 
+    }
     
 }
