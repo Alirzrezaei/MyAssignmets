@@ -34,7 +34,7 @@ public class Analyze {
      * 
      */ 
     //TODO insert code that makes sense
-    //public static int [][][] map = Data.getMap();
+    private static int [][][] map = Data.getMap();
     /**
      * the current position of the Drone. Default is POS_SERVICE. {@code posDrone}
      */
