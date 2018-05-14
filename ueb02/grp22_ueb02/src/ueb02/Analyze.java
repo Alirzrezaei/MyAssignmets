@@ -59,7 +59,7 @@ public class Analyze {
         {
             int distance = (int) Math.ceil(Math.sqrt(Math.pow((pos2[0] - pos1[0]), 2) +
                     Math.pow((pos2[1] - pos1[1]), 2)));
-            return distance;
+            return distance ;
         } else {
             return Integer.MAX_VALUE;
         }
