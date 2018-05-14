@@ -28,4 +28,16 @@ public class DataNGTest {
         assertEquals(null, Data.getOrderSeries(-1));
        assertEquals(null, Data.getOrderSeries(4));
     }
+      @Test
+    public void testGetMap_Index() {      
+        //assertEquals(3, Data.getMap()[0][0][3]);
+       //assertEquals(4, Data.getMap()[7][3][1]);
+       assertEquals(10, Data.getMap().length);
+    }
+    @Test
+    public void testGetMapDimension(){
+        assertEquals(10, Data.getMapDimensions()[0]);
+        assertEquals(7, Data.getMapDimensions()[1]);
+    }
+    
 }
