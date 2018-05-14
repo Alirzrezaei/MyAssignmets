@@ -145,10 +145,10 @@ public class Data {
      * @return a copy of the whole map of the initial situation.
      */
     public static int[][][] getMap() {
-        int[][][] copyMAP= new int[MAP.length][][];
+        int[][][] copyMAP= new int[MAP.length][MAP[0].length][];
             for (int i = 0; i < MAP.length; i++) {
                 for(int j =0 ; j < MAP[i].length; j++){
-                    copyMAP[i][j] = MAP[i][j].clone();
+                    copyMAP[i][j] = MAP[i][j].clone();  
                 }
             }
         return copyMAP;
