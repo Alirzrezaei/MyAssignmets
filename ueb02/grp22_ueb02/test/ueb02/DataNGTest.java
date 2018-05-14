@@ -30,8 +30,8 @@ public class DataNGTest {
     }
       @Test
     public void testGetMap_Index() {      
-        //assertEquals(3, Data.getMap()[0][0][3]);
-       //assertEquals(4, Data.getMap()[7][3][1]);
+        assertEquals(3, Data.getMap()[0][0][3]);
+       assertEquals(4, Data.getMap()[7][3][1]);
        assertEquals(10, Data.getMap().length);
     }
     @Test
