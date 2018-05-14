@@ -150,9 +150,7 @@ public class Data {
                 for(int j =0 ; j < MAP[i].length; j++){
                     copyMAP[i][j] = MAP[i][j].clone();
                 }
-                
             }
-            
         return copyMAP;
     }
 
