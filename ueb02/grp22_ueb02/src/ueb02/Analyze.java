@@ -115,12 +115,14 @@ public class Analyze {
      */
     private static int transportSameProducts(int[] from, int[] to, int product, int count) {
         int [] warehouse = map[from[0]][from[1]].clone();
+        System.out.print(warehouse);
         int [] customer = map[to[0]][to[1]].clone();
         if(isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[0], from[1])){
            int idx = 0;
-            while(ArrayTools.containsAt(warehouse, product)!= -1){
+            if(ArrayTools.containsAt(warehouse, product)!= -1){
+                int index = ArrayTools.containsAt(warehouse, product);
                 ArrayTools.insertElementAt(customer, idx++, product);
-                ArrayTools.deleteElementAt(warehouse, ArrayTools.containsAt(warehouse, product));
+                ArrayTools.deleteElementAt(warehouse, index);
                 count--;
             }
             map[from[0]][from[1]]= warehouse.clone();
