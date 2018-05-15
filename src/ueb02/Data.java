@@ -124,7 +124,6 @@ public class Data {
      *         null if the idx isn't valid
      */
     public static int[][] getOrderSeries(int idx) {
-
         
         if (idx >= ORDER_SERIES.length || idx < 0) {
             System.err.print("invalid index ");

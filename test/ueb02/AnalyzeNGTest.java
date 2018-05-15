@@ -65,4 +65,5 @@ public class AnalyzeNGTest {
         assertEquals(-1, Analyze.flownDrone(pos3)); 
         
     }
+   
 }
