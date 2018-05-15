@@ -39,7 +39,7 @@ public class Analyze {
      * the current position of the Drone. Default is POS_SERVICE. {@code posDrone}
      */
     //TODO insert code that makes sense
-    private static int [] posDrone = {0, 0};
+    private static int [] posDrone = POS_SERVICE.clone();
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="helping methods">
