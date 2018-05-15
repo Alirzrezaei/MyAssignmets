@@ -65,5 +65,10 @@ public class AnalyzeNGTest {
         assertEquals(-1, Analyze.flownDrone(pos3)); 
         
     }
-   
+   @Test
+   public void testTransportSameProducts_true(){
+       int [] from = {0, 0};
+       int[] to = {3, 4};
+       assertEquals(1, Analyze.transportSameProduct(from, to, 3, 3));
+   }
 }
