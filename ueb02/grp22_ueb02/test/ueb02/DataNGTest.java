@@ -28,6 +28,7 @@ public class DataNGTest {
         assertEquals(null, Data.getOrderSeries(-1));
        assertEquals(null, Data.getOrderSeries(4));
     }
+    /***********************************************/
      @Test
     public void testGetMAP() {      
         assertEquals(3, Data.getMap()[0][0][3]);

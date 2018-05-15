@@ -180,6 +180,13 @@ public class Analyze {
     public static void resetToOrigState() {
         //TODO insert code that makes sense
     }
+    
+    /**
+     * Helper method to test private methods.
+     * @param pos1 first point that drone start from it
+     * @param pos2 second point that drone finish there
+     * @return integer number as distance that drone flew
+     */
     public static int distance(int[] pos1, int[] pos2){
         return calcDistanceBetween(pos1, pos2); 
     }
