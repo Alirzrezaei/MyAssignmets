@@ -118,7 +118,7 @@ public class Analyze {
         int [] customer = map[to[0]][to[1]].clone();
         if(isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[0], from[1])){
            int idx = 0;
-            while(ArrayTools.containsAt(warehouse, product)!= -1){
+            while(ArrayTools.containsAt(warehouse, product)!= -1 && count != 0){
                 int index = ArrayTools.containsAt(warehouse, product);
                 customer = ArrayTools.insertElementAt(customer, idx++, product).clone();
                 warehouse = ArrayTools.deleteElementAt(warehouse, index).clone();
