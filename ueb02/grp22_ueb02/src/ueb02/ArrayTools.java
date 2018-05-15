@@ -14,7 +14,6 @@ public class ArrayTools {
      * @return the position of the first occurrence of the value, if not then -1
      */
     public static int containsAt(int[] array, int value) {
-        //TODO insert code that makes sense
        
         if (array.length > 0) {
             for (int i = 0; i < array.length; i++) {
