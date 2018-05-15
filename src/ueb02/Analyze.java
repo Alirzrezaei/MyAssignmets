@@ -185,11 +185,18 @@ public class Analyze {
      * Helper method to test private methods.
      * @param pos1 first point that drone start from it
      * @param pos2 second point that drone finish there
-     * @return integer number as distance that drone flew
+     * @return integer number as distance that drone flew or max value of integer
+     * if the positions are not valid
      */
     public static int distance(int[] pos1, int[] pos2){
         return calcDistanceBetween(pos1, pos2); 
     }
+    /**
+     * Helper method to give the distance of the the drone from current position to 
+     * the given position.
+     * @param pos the position that the drone should fly to. 
+     * @return distance between to positions and -1 if the the position is not valid. 
+     */
     public static int flownDrone(int [] pos){
         return flyDroneTo(pos); 
     }
