@@ -63,8 +63,7 @@ public class Analyze {
             return distance ;
         } else {
             return Integer.MAX_VALUE;
-        }
-        
+        }      
     }
     
     /**
@@ -116,6 +115,15 @@ public class Analyze {
      */
     private static int transportSameProducts(int[] from, int[] to, int product, int count) {
         //TODO insert code that makes sense
+        if(isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[0], from[1])){
+           int idx = 0;
+            while(ArrayTools.containsAt(from, product)!= -1){
+                ArrayTools.insertElementAt(to, idx++, product);
+                ArrayTools.deleteElementAt(from, ArrayTools.containsAt(from, product));
+                count--;
+            }
+            return count;
+        }
         return 0;
     }
     
@@ -203,6 +211,12 @@ public class Analyze {
      */
     public static int flownDrone(int [] pos){
         return flyDroneTo(pos); 
+    }
+    public static int transportSameProduct(int[] from, int[] to, int product, int count){
+        return transportSameProducts(from, to, product, count);
+    }
+    public static int[][][] getMap(){
+        return map;
     }
 
 }
