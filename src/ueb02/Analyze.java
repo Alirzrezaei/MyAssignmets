@@ -114,25 +114,16 @@ public class Analyze {
      * @return count of products still to transport
      */
     private static int transportSameProducts(int[] from, int[] to, int product, int count) {
-        int [] warehouse = map[from[0]][from[1]].clone();
-        for(int i = 0; i < warehouse.length; i++){
-        System.out.print(warehouse[i]);
-        }
-        System.out.print("****");
+        int [] warehouse = map[from[0]][from[1]].clone();     
         int [] customer = map[to[0]][to[1]].clone();
         if(isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[0], from[1])){
            int idx = 0;
-            if(ArrayTools.containsAt(warehouse, product)!= -1){
+            while(ArrayTools.containsAt(warehouse, product)!= -1){
                 int index = ArrayTools.containsAt(warehouse, product);
-                System.out.print("**"+index+"**");
-                ArrayTools.insertElementAt(customer, idx++, product);
-                ArrayTools.deleteElementAt(warehouse, index);
+                customer = ArrayTools.insertElementAt(customer, idx++, product).clone();
+                warehouse = ArrayTools.deleteElementAt(warehouse, index).clone();
                 count--;
-                System.out.print("I am Here");
             }
-            for(int i = 0; i < warehouse.length; i++){
-        System.out.print(warehouse[i]);
-        }
             map[from[0]][from[1]]= warehouse.clone();
             map[to[0]][to[1]]= customer.clone();
             return count;
