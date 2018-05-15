@@ -124,6 +124,7 @@ public class Analyze {
                 warehouse = ArrayTools.deleteElementAt(warehouse, index).clone();
                 count--;
             }
+            
             map[from[0]][from[1]]= warehouse.clone();
             map[to[0]][to[1]]= customer.clone();
             return count;
@@ -219,8 +220,15 @@ public class Analyze {
     public static int transportSameProduct(int[] from, int[] to, int product, int count){
         return transportSameProducts(from, to, product, count);
     }
-    public static int[][][] getMap(){
-        return map;
+    public static void getMap(){
+         for(int i = 0; i < map[0][0].length; i++){
+        System.out.print(map[0][0][i]);
+        }
+         for(int i = 0; i < map[3][4].length; i++){
+        System.out.print(map[3][4][i]);
+        }
+      //return map;
+       
     }
 
 }
