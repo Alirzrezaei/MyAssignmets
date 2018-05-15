@@ -69,7 +69,7 @@ public class AnalyzeNGTest {
    public void testTransportSameProducts_true(){
        int [] from = {0, 0};
        int[] to = {3, 4};
-       Analyze.transportSameProduct(from, to, 3, 3);
-       assertEquals(8, Analyze.getMap()[0][0].length);
+       assertEquals(1, Analyze.transportSameProduct(from, to, 3, 3));
+       assertEquals(6, Analyze.getMap()[0][0].length);
    }
 }
