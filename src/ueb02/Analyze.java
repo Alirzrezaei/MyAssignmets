@@ -2,6 +2,7 @@ package ueb02;
 
 import static ueb02.ArrayTools.*;
 import java.lang.Math;
+import jdk.management.resource.internal.ApproverGroup;
 
 /**
  * Methods to manage the transport from products from warehouses to customers by drone.
@@ -179,6 +180,9 @@ public class Analyze {
      */
     public static void resetToOrigState() {
         //TODO insert code that makes sense
+        unites = 0; 
+        map = Data.getMap();
+        posDrone = POS_SERVICE;
     }
     
     /**
