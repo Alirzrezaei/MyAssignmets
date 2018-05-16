@@ -69,6 +69,12 @@ public class ArrayToolsNGTest {
         assertEquals(null, ArrayTools.deleteElementAt(array, 5));
         //assertNull(array);
     }
+        @Test 
+        public void deleteElementAtTest_oneElement(){
+        int [] array = {1};
+        assertEquals(0, ArrayTools.deleteElementAt(array, 0).length);
+    }
+        
     
     /********************************************************************/
      @Test 
