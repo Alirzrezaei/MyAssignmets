@@ -79,11 +79,10 @@ public class ArrayTools {
                 if (i == idx) {
                     newArray[j] = value;
                     j++;
-                } else {
-                    newArray[j] = array[i];
                 }
+                newArray[j] = array[i];
                 j++;
-            }
+            } 
             return newArray;
         } else {
             return null;
