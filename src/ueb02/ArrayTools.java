@@ -63,8 +63,7 @@ public class ArrayTools {
      * null if invalid params
      */
     public static int[] insertElementAt(int[] array, int idx, int value) {
-        
-        
+         
         if (isEmpty(array) && idx == 0) {
             int[] newArray = new int[1];
             newArray[0] = value;
