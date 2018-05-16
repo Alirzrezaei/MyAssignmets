@@ -63,20 +63,36 @@ public class ArrayTools {
      * null if invalid params
      */
     public static int[] insertElementAt(int[] array, int idx, int value) {
-        int[] newArray = new int[array.length + 1];
-        int j =0;
-        if ( idx <= array.length && idx >= 0) {
+        
+        
+        if (isEmpty(array) && idx == 0) {
+            int[] newArray = new int[1];
+            newArray[0] = value;
+            return newArray;
+        } else if (idx <= (array.length) && idx >= 0) {
+            int[] newArray = new int[array.length + 1];
+            int j = 0;
             for (int i = 0; i < array.length; i++) {
                 if (i == idx) {
-                   newArray[j] = value;
-                   j++;
+                    newArray[j] = value;
+                    j++;
+                } else {
+                    newArray[j] = array[i];
                 }
-                newArray[j] = array[i];
                 j++;
             }
             return newArray;
+        } else {
+            return null;
         }
-        return null;
+    }
+    /**
+     * Helper method to check if the array is empty.
+     * @param array
+     * @return True if the array is empty. 
+     */
+    public static boolean isEmpty(int [] array){
+        return array.length < 1; 
     }
     
     /**
