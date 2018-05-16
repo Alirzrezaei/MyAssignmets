@@ -119,7 +119,7 @@ public class Analyze {
       
         if(isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[0], from[1])){
            int idx = 0;
-            while(ArrayTools.containsAt(warehouse, product)!= -1 && count > 0){
+            while(ArrayTools.containsAt(warehouse, product)!= -1 && count != 0){
                 int index = ArrayTools.containsAt(warehouse, product);
                 customer [idx] = product;
                 idx++;
@@ -245,6 +245,7 @@ public class Analyze {
         return map[pos[0]][pos[1]].length < 1;
     }
     public static void getMap(){
+        System.out.println("");
          for(int i = 0; i < map[0][0].length; i++){
         System.out.print(map[0][0][i]);
         }

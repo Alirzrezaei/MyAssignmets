@@ -35,6 +35,10 @@ public class ArrayTools {
      * invalid params
      */
     public static int[] deleteElementAt(int[] array, int idx) {
+       if(array.length == 1){
+           int [] newArray = {};
+           return newArray;
+       }
         if (!isEmpty(array)) {
             int[] newArray = new int[array.length - 1];
             int j = 0;
