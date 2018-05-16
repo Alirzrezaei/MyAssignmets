@@ -98,7 +98,8 @@ public class ArrayToolsNGTest {
     @Test 
     public void insertElementAtTest_EmptyArray(){
         int [] array = {};
-        assertEquals(1, ArrayTools.insertElementAt(array, 0, 6).length);
+        //assertEquals(1, ArrayTools.insertElementAt(array, 0, 3).length);
+        assertEquals(1, ArrayTools.insertElementAt(array, 0, 3).length);
         //assertEquals(null, ArrayTools.insertElementAt(array, 2, 6));
     }
     @Test 
