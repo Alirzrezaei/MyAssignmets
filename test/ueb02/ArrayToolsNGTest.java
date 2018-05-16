@@ -74,7 +74,19 @@ public class ArrayToolsNGTest {
      @Test 
     public void insertElementAtTest_trueValue(){
         int [] array = {1, 2, 3, 4, 5};
+        assertEquals(6, ArrayTools.insertElementAt(array, 2, 6).length);
+        
+    }
+    @Test 
+    public void insertElementAtTest_AtBeginning(){
+        int [] array = {1, 2, 3, 4, 5};
         assertEquals(6, ArrayTools.insertElementAt(array, 0, 6).length);
+        //assertEquals(3, ArrayTools.containsAt(array, 4));
+    }
+     @Test 
+    public void insertElementAtTest_AtEnd(){
+        int [] array = {1, 2, 3, 4, 5};
+        assertEquals(6, ArrayTools.insertElementAt(array, 5, 6).length);
         //assertEquals(3, ArrayTools.containsAt(array, 4));
     }
     @Test 
@@ -83,11 +95,17 @@ public class ArrayToolsNGTest {
         assertEquals(1, ArrayTools.insertElementAt(array, 0, 6).length);
         assertEquals(null, ArrayTools.insertElementAt(array, 2, 6));
     }
-     @Test 
+    @Test 
     public void insertElementAtTest_InvalIndex(){
         int [] array = {1};
         assertEquals(null, ArrayTools.insertElementAt(array, 2, 6));
     }
+     @Test 
+    public void insertElementAtTest_InvalIndexNegative(){
+        int [] array = {1};
+        assertEquals(null, ArrayTools.insertElementAt(array, -1, 6));
+    }
+    
      /********************************************************************/
      @Test 
     public void TestgetMaxLength_TrueCase(){

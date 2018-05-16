@@ -65,7 +65,7 @@ public class ArrayTools {
     public static int[] insertElementAt(int[] array, int idx, int value) {
         int[] newArray = new int[array.length + 1];
         int j =0;
-        if ( idx <= array.length) {
+        if ( idx <= array.length && idx >= 0) {
             for (int i = 0; i < array.length; i++) {
                 if (i == idx) {
                    newArray[j] = value;
