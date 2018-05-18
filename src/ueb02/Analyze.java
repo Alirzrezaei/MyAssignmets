@@ -116,6 +116,7 @@ public class Analyze {
     private static int transportSameProducts(int[] from, int[] to, int product, int count) {
         int [] warehouse = map[from[0]][from[1]].clone(); 
         int [] customer = new int[count];
+        int counter = 0;
       
         if(isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[0], from[1])){
            int idx = 0;
@@ -126,6 +127,7 @@ public class Analyze {
                 System.out.print(warehouse.length+ "*");
                 System.out.print(index+ "*");
                 warehouse = ArrayTools.deleteElementAt(warehouse, index).clone();
+                counter++;
                 count--;
             }
             
@@ -134,7 +136,7 @@ public class Analyze {
             if (isEmpty(to)) {
                 map[to[0]][to[1]] = customer.clone();
             } else {  
-                int [] customer2 = new int [customer.length + map[to[0]][to[1]].length];
+                int [] customer2 = new int [counter + map[to[0]][to[1]].length];
                 int j = 0;
                 for (int i = 0; i < customer2.length; i++) {
                     if(i < map[to[0]][to[1]].length){
