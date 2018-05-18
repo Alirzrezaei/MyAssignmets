@@ -164,6 +164,25 @@ public class Analyze {
      */
     private static int[] findNearestWarehouse(int[] pos, int product) {
         //TODO insert code that makes sense
+        boolean isWarehouse = false;
+        int [] nearestWarehouse = new int [2];
+        int distance = calcDistanceBetween(new int[] {0, 0}, new int[] {10, 7});
+        for(int i = 0; i < map.length; i++){
+            for(int j = 0; j < map[i].length; j++){
+                if(Data.isWarehouse(i, j) && ArrayTools.containsAt(pos, product)!= -1){
+                    
+                    if (calcDistanceBetween(pos, new int[]{i, j}) < distance) {
+                        isWarehouse = true; 
+                        nearestWarehouse[0] = i;
+                        nearestWarehouse[1] = j;
+                        distance = calcDistanceBetween(pos, nearestWarehouse);
+                    }
+                }
+            }
+        }
+        if(isWarehouse){
+            return nearestWarehouse; 
+        }
         return null;
     }
     
