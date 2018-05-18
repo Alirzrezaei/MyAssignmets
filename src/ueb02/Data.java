@@ -99,7 +99,6 @@ public class Data {
      * @return the amount of series
      */
     public static int getNoOfSeries() {
-        //TODO insert code that makes sense        
         return ORDER_SERIES.length;
     }
 
