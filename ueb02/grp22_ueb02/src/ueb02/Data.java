@@ -89,8 +89,7 @@ public class Data {
      * @return the dimensions of the map
      */
     public static int[] getMapDimensions() { 
-        int [] map = {MAP.length , MAP[0].length};
-        return map; 
+        return new int [] {MAP.length , MAP[0].length}; 
     }
 
     /**
