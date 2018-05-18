@@ -70,8 +70,8 @@ public class AnalyzeNGTest {
        int [] from = {0, 0};
        int [] from2 = {4, 6};
        int[] to = {1, 2};
-       assertEquals(0, Analyze.transportSameProduct(from, to, 3, 2));
-      assertEquals(1, Analyze.transportSameProduct(from2, to, 0, 2));
+       assertEquals(0, Analyze.transportSameProduct(from, to, 4, 2));
+      assertEquals(1, Analyze.transportSameProduct(from, to, 3, 3));
        Analyze.getMap();
        //assertEquals(3, Analyze.getMap()[0][0].length);
    }
