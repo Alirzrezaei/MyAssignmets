@@ -182,8 +182,8 @@ public class Analyze {
         }
         if(isWarehouse){
             return nearestWarehouse; 
-        }
-        return null;
+        }else return null;
+        
     }
     
     /**
@@ -191,7 +191,7 @@ public class Analyze {
      * Process every order of the series. Prints the values of the order.
      * Searches for the nearest warehouse with the product, 
      * transports the ordered number of the product to the target adress.
-     * If the first detected warehouse doesn_t hold enough of the product,
+     * If the first detected warehouse does not hold enough of the product,
      * the next warehouse with the product has to be used.
      * If there is no warehouse with the product, a message on serr is printed.
      * After all orders have been delivered, the drone flies to the service-station.
@@ -201,6 +201,7 @@ public class Analyze {
      */
     public static boolean transportOrdersOfOneSeries(int[][] orders) {
         //TODO insert code that makes sense
+        
         return false; 
     }
 //</editor-fold>
