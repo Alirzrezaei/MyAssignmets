@@ -168,13 +168,12 @@ public class Analyze {
         int [] nearestWarehouse = new int [2];
         int distance = calcDistanceBetween(new int[] {0, 0}, Data.getMapDimensions());
         for(int i = 0; i < map.length; i++){
-            for(int j = 0; j < map[i].length; j++){
-                if(Data.isWarehouse(i, j) && ArrayTools.containsAt(pos, product)!= -1){
-                    
+            for(int j = 0; j < map[i].length; j++){      
+                if(Data.isWarehouse(i, j) && ArrayTools.containsAt(map[i][j], product)!= -1){
                     if (calcDistanceBetween(pos, new int[]{i, j}) < distance) {
                         isWarehouse = true; 
                         nearestWarehouse[0] = i;
-                        nearestWarehouse[1] = j;
+                        nearestWarehouse[1] = j;        
                         distance = calcDistanceBetween(pos, nearestWarehouse);
                     }
                 }
@@ -183,7 +182,6 @@ public class Analyze {
         if(isWarehouse){
             return nearestWarehouse; 
         }else return null;
-        
     }
     
     /**
@@ -261,6 +259,9 @@ public class Analyze {
     }
     public static int transportSameProduct(int[] from, int[] to, int product, int count){
         return transportSameProducts(from, to, product, count);
+    }
+    public static int [] FindNearestWarehous(int[] pos, int product){
+        return findNearestWarehouse(pos, product);
     }
     private static boolean isEmpty(int [] pos){
         return map[pos[0]][pos[1]].length < 1;
