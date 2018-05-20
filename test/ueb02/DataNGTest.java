@@ -36,4 +36,8 @@ public class DataNGTest {
        assertEquals(10, Data.getMap().length);
        assertEquals(7, Data.getMap()[5].length);
     }
+     @Test
+    public void testIsWarehouse() {      
+        assertTrue(Data.isWarehouse(0, 3));
+    }
 }

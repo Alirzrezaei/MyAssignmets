@@ -22,8 +22,8 @@ public class ArrayToolsNGTest {
     }
     @Test 
     public void containsAtTest_true(){
-        int [] array = {1, 2, 3, 4, 5};
-        assertEquals(2, ArrayTools.containsAt(array, 3));
+        int [] array = {2, 2};
+        assertEquals(0, ArrayTools.containsAt(array, 2));
     }
     @Test 
     public void containsAtTest_EmptyArray(){
