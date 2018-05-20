@@ -93,4 +93,18 @@ public class AnalyzeNGTest {
        assertEquals(3, Analyze.transportSameProduct(from, to, 5, 3));
        //assertEquals(8, Analyze.getMap()[0][0].length);
    }
+   @Test
+   public void testfindNearestWarehouse_Truecase(){
+       Analyze.resetToOrigState();
+       int pos[] = {0 ,0};     
+       assertEquals(0 , Analyze.FindNearestWarehous(pos, 4)[0]);
+       assertEquals(3 , Analyze.FindNearestWarehous(pos, 2)[1]);
+   }
+    @Test
+   public void testfindNearestWarehouse2_Truecase(){
+       Analyze.resetToOrigState();
+       int pos[] = {0 ,0};     
+       assertEquals(0 , Analyze.FindNearestWarehous(pos, 3)[0]);
+       assertEquals(0 , Analyze.FindNearestWarehous(pos, 3)[1]);
+   }
 }
