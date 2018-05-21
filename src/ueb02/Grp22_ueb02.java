@@ -20,7 +20,7 @@ public class Grp22_ueb02 {
             System.out.println("***************************************");
             System.out.println("Warehouses (initial):");
             Analyze.printCurrentState();
-            System.out.println("***************************************");
+            //System.out.println("***************************************");
             System.out.println("Orders of series " + no + ":");
             Analyze.transportOrdersOfOneSeries(order);
             Analyze.printCurrentState();
