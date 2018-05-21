@@ -128,7 +128,6 @@ public class Analyze {
                 warehouse = ArrayTools.deleteElementAt(warehouse, index).clone();
                 counter++;
                 count--;
-                System.out.println(count);
             } 
             map[from[0]][from[1]] = warehouse.clone();
         
@@ -211,14 +210,18 @@ public class Analyze {
                 customer [0] = orders[i][0]; 
                 customer [1] = orders[i][1];
                 noOfProducts = orders[i][3];
-                
+                System.out.println("deliver " + noOfProducts + " of product "
+                        + product + " to ("+customer[0] +"/" + customer[1] +")" );
                 while (noOfProducts > 0 && 
                         findNearestWarehouse(posDrone ,product)!= null) {
-                    flyDroneTo(warehouse);
-                   
+                    
+                   System.out.println("fly Drone to (" + warehouse[0]+ "/"+warehouse[1]+
+                           ") distance " + calcDistanceBetween(posDrone, warehouse));
+                   flyDroneTo(warehouse);
                     noOfProducts = transportSameProducts(warehouse,
                             customer, product, noOfProducts);
-                    
+                    System.out.println("fly Drone to (" + customer[0]+ "/"+customer[1]+
+                           ") distance " + calcDistanceBetween(posDrone, customer));
                     flyDroneTo(customer);
                    //System.out.println(noOfProducts+" number of products");
                     if (findNearestWarehouse(posDrone ,orders[i][2])!= null){
@@ -227,6 +230,9 @@ public class Analyze {
                     
                 } 
             }
+            System.out.println("fly Drone to (" + POS_SERVICE[0]+ "/"+POS_SERVICE[1]+
+                           ") distance " + calcDistanceBetween(posDrone, POS_SERVICE));
+            flyDroneTo(POS_SERVICE);
                     if(noOfProducts > 0){
                         System.err.println(noOfProducts +" product "+ product+ " missining in warehouses.");
                         return false;
@@ -246,23 +252,24 @@ public class Analyze {
      */
     public static void printCurrentState() {
         //TODO insert code that makes sense
-        for(int i =0; i < map.length ; i++){
-            for(int j = 0; j < map[i].length; j++){
-                if(Data.isWarehouse(i, j)){
+        for(int i =0; i < Data.getMapDimensions()[1] ; i++){
+            for(int j = 0; j < Data.getMapDimensions()[0]; j++){
+                if(Data.isWarehouse(j, i)){
                     System.out.print(WAREHOUSE);
                 }
-                else if(map[i][j].length > 0){
+                else if(map[j][i].length > 0){
                     System.out.print(CUSTOMER);
                 }
                 else{
                     System.out.print(EMPTY);
                 }
-                for(int k = 0; k < map[i][j].length; k++){
-                    System.out.print(map[i][j][k]);
+                for(int k = 0; k < map[j][i].length; k++){
+                    System.out.print(map[j][i][k]);
                 } System.out.print(" ");
             }
             System.out.println("");
         }
+        System.out.println("Drone now at " + POS_SERVICE [0]+ "/" + POS_SERVICE[1] + " flew " +unites + " units");
     }
 
     /**
@@ -275,7 +282,11 @@ public class Analyze {
      */
     private static int getPrintWidthPerColumn(int column) {
         //TODO insert code that makes sense
-        return 0;
+       
+           return ArrayTools.getLengthOfLongestArray(map[column]);
+
+        
+
     }
     //</editor-fold>
 
@@ -317,6 +328,10 @@ public class Analyze {
     private static boolean isEmpty(int [] pos){
         return map[pos[0]][pos[1]].length < 1;
     }
+    public static int GetPrintWidthPerColumn(int column) {
+        return getPrintWidthPerColumn(column);
+    }
+
     public static void getMap(){
         System.out.println(" ");
         System.out.println(map[7][4].length);
