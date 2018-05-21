@@ -107,4 +107,17 @@ public class AnalyzeNGTest {
        assertEquals(0 , Analyze.FindNearestWarehous(pos, 3)[0]);
        assertEquals(0 , Analyze.FindNearestWarehous(pos, 3)[1]);
    }
+   @Test
+   public void testtransportOrdersOfOneSeries_TrueCase(){
+       int [][] ord=Data.getOrderSeries(0);
+       assertTrue(Analyze.transportOrdersOfOneSeries(ord));
+       Analyze.getMap();
+   }
+    @Test
+   public void testtransportOrdersOfOneSeries_TrueCase2(){
+       Analyze.resetToOrigState();
+       int [][] ord = Data.getOrderSeries(2);
+       assertTrue(Analyze.transportOrdersOfOneSeries(ord));
+       Analyze.getMap();
+   }
 }
