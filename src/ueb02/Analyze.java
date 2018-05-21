@@ -246,6 +246,7 @@ public class Analyze {
      */
     public static void printCurrentState() {
         //TODO insert code that makes sense
+        
     }
 
     /**
