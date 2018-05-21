@@ -120,4 +120,19 @@ public class AnalyzeNGTest {
        assertTrue(Analyze.transportOrdersOfOneSeries(Data.getOrderSeries(0)));
        Analyze.getMap();
    }
+    @Test
+   public void testGetPrintWidthPerColumn(){
+       Analyze.resetToOrigState();
+        assertEquals(8, Analyze.GetPrintWidthPerColumn(0));
+   }
+   @Test
+   public void testGetPrintWidthPerColumn2(){
+       Analyze.resetToOrigState();
+        assertEquals(0, Analyze.GetPrintWidthPerColumn(1));
+   }
+    @Test
+   public void testGetPrintWidthPerColumn3(){
+       Analyze.resetToOrigState();
+        assertEquals(1, Analyze.GetPrintWidthPerColumn(4));
+   }
 }
