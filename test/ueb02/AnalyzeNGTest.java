@@ -86,6 +86,15 @@ public class AnalyzeNGTest {
        
        //assertEquals(5, Analyze.getMap()[0][0].length);
    }
+    @Test
+   public void testTransportSameProducts_enough2(){
+   Analyze.resetToOrigState();
+       int [] from = {0, 0};
+       int [] from2 = {6, 3};
+       int[] to = {3, 4};
+       assertEquals(0, Analyze.transportSameProduct(from2, to, 4, Analyze.transportSameProduct(from, to, 4, 5)));
+       Analyze.getMap();
+   }
 
    @Test
    public void testTransportSameProducts_invalidProduct(){
@@ -110,6 +119,7 @@ public class AnalyzeNGTest {
    }
    @Test
    public void testtransportOrdersOfOneSeries_TrueCase(){
+       Analyze.resetToOrigState();
        int [][] ord=Data.getOrderSeries(0);
        assertTrue(Analyze.transportOrdersOfOneSeries(ord));
        Analyze.getMap();
@@ -117,7 +127,19 @@ public class AnalyzeNGTest {
     @Test
    public void testtransportOrdersOfOneSeries_TrueCase2(){
        Analyze.resetToOrigState();
-       assertTrue(Analyze.transportOrdersOfOneSeries(Data.getOrderSeries(0)));
+       assertFalse(Analyze.transportOrdersOfOneSeries(Data.getOrderSeries(3)));
+       Analyze.getMap();
+   }
+     @Test
+   public void testtransportOrdersOfOneSeries_FalseCase3(){
+       Analyze.resetToOrigState();
+       assertFalse(Analyze.transportOrdersOfOneSeries(Data.getOrderSeries(3)));
+       Analyze.getMap();
+   }
+     @Test
+   public void testtransportOrdersOfOneSeries_TrueCase3(){
+       Analyze.resetToOrigState();
+       assertTrue(Analyze.transportOrdersOfOneSeries(Data.getOrderSeries(2)));
        Analyze.getMap();
    }
     @Test
