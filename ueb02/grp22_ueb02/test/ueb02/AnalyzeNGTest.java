@@ -82,7 +82,8 @@ public class AnalyzeNGTest {
    Analyze.resetToOrigState();
        int [] from = {0, 0};
        int[] to = {3, 4};
-       assertEquals(0, Analyze.transportSameProduct(from, to, 4, 3));
+       assertEquals(1, Analyze.transportSameProduct(from, to, 4, 5));
+       
        //assertEquals(5, Analyze.getMap()[0][0].length);
    }
 
@@ -116,8 +117,7 @@ public class AnalyzeNGTest {
     @Test
    public void testtransportOrdersOfOneSeries_TrueCase2(){
        Analyze.resetToOrigState();
-       int [][] ord = Data.getOrderSeries(2);
-       assertTrue(Analyze.transportOrdersOfOneSeries(ord));
+       assertTrue(Analyze.transportOrdersOfOneSeries(Data.getOrderSeries(0)));
        Analyze.getMap();
    }
 }

@@ -35,24 +35,26 @@ public class ArrayTools {
      * invalid params
      */
     public static int[] deleteElementAt(int[] array, int idx) {
-       if(array.length == 1){
-           int [] newArray = {};
-           return newArray;
-       }
+      
         if (!isEmpty(array)) {
-            int[] newArray = new int[array.length - 1];
-            int j = 0;
-            if (array.length > 0 && idx < array.length) {
-                for (int i = 0; i < array.length; i++) {
-                    if (i == idx) {
-                        i++;
+            if (array.length == 1) {
+                int[] newArray = {};
+                return newArray;
+            } 
+           else if (idx < array.length) {
+                int[] newArray = new int[array.length - 1];
+                int j = 0;
+                for (int i = 0; i < newArray.length; i++) {
+                    if (j == idx) {
+                        j++;
                     }
-                    newArray[j] = array[i];
+                    newArray[i] = array[j];
                     j++;
                 }
-                 return newArray;
+                return newArray;
             }
-           
+           else{return null;}
+
         }
         return null;
     }
