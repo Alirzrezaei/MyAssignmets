@@ -24,8 +24,7 @@ public class Grp22_ueb02 {
             System.out.println("Orders of series " + no + ":");
             Analyze.transportOrdersOfOneSeries(order);
             Analyze.printCurrentState();
-        }
-        System.out.println(Data.getMapDimensions()[0]);
+        }     
     }
 
 }
