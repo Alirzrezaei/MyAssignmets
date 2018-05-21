@@ -252,6 +252,7 @@ public class Analyze {
      */
     public static void printCurrentState() {
         //TODO insert code that makes sense
+        System.out.println("----------------------------------------");
         for(int i =0; i < Data.getMapDimensions()[1] ; i++){
             for(int j = 0; j < Data.getMapDimensions()[0]; j++){
                 if(Data.isWarehouse(j, i)){
@@ -270,6 +271,7 @@ public class Analyze {
             System.out.println("");
         }
         System.out.println("Drone now at " + POS_SERVICE [0]+ "/" + POS_SERVICE[1] + " flew " +unites + " units");
+        System.out.println("----------------------------------------");
     }
 
     /**
