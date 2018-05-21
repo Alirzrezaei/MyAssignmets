@@ -16,7 +16,7 @@ public class Analyze {
 //<editor-fold defaultstate="collapsed" desc="constants">
     /** signs to show for printing the map. */
     //TODO insert code that makes sense
-    private final char WAREHOUSE = 'W';
+    private static final char WAREHOUSE = 'W';
     private static final char EMPTY = 'E'; 
     private static final char CUSTOMER = 'C';
     /** position of service-station of the drone {@code POS_SERVICE}*/
@@ -246,7 +246,23 @@ public class Analyze {
      */
     public static void printCurrentState() {
         //TODO insert code that makes sense
-        
+        for(int i =0; i < map.length ; i++){
+            for(int j = 0; j < map[i].length; j++){
+                if(Data.isWarehouse(i, j)){
+                    System.out.print(WAREHOUSE);
+                }
+                else if(map[i][j].length > 0){
+                    System.out.print(CUSTOMER);
+                }
+                else{
+                    System.out.print(EMPTY);
+                }
+                for(int k = 0; k < map[i][j].length; k++){
+                    System.out.print(map[i][j][k]);
+                } System.out.print(" ");
+            }
+            System.out.println("");
+        }
     }
 
     /**
