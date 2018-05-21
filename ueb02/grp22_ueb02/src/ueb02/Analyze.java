@@ -129,8 +129,7 @@ public class Analyze {
                 warehouse = ArrayTools.deleteElementAt(warehouse, index).clone();
                 counter++;
                 count--;
-            }
-            
+            } 
             map[from[0]][from[1]] = warehouse.clone();
         
             if (isEmpty(to)) {
@@ -188,20 +187,47 @@ public class Analyze {
      * Transports an order-series by the drone.
      * Process every order of the series. Prints the values of the order.
      * Searches for the nearest warehouse with the product, 
-     * transports the ordered number of the product to the target adress.
+     * transports the ordered number of the product to the target address.
      * If the first detected warehouse does not hold enough of the product,
      * the next warehouse with the product has to be used.
      * If there is no warehouse with the product, a message on serr is printed.
      * After all orders have been delivered, the drone flies to the service-station.
-     *
      * @param orders the order-series working on
      * @return false if there is no warehouse with the product/not enough of the product; true otherwise
      */
     public static boolean transportOrdersOfOneSeries(int[][] orders) {
         //TODO insert code that makes sense
-        
-        return false; 
+        if (findNearestWarehouse(posDrone ,orders[0][2])!= null)  {
+            int [] warehouse= new int [2];
+            int [] customer = new int [2];
+            int noOfProducts; 
+            int product; 
+            for (int i = 0; i < orders.length; i++) {
+                warehouse = findNearestWarehouse(posDrone, orders[i][2]).clone();
+                customer [0] = orders[i][0]; 
+                customer [1] =  orders[i][1];
+               product = orders[i][2];
+                noOfProducts =  orders[i][3];
+                
+                while (findNearestWarehouse(posDrone, product) != null) {
+                    flyDroneTo(warehouse);
+                    //System.out.print(posDrone[0]+posDrone[1]);
+                     System.out.println("we are here2");
+                    noOfProducts = transportSameProducts(warehouse,
+                            customer, product, noOfProducts);
+                    flyDroneTo(customer);
+                    System.out.println("we are here3");
+                    if (findNearestWarehouse(posDrone ,orders[i][2])!= null){
+                         warehouse = findNearestWarehouse(posDrone, product).clone();
+                    }
+                    
+                } 
+            }
+            return true;
+        }
+        return false;
     }
+    
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Output">
@@ -267,14 +293,11 @@ public class Analyze {
         return map[pos[0]][pos[1]].length < 1;
     }
     public static void getMap(){
-        System.out.println("");
-         for(int i = 0; i < map[0][0].length; i++){
-        System.out.print(map[0][0][i]);
+        System.out.println(" ");
+         for(int i = 0; i < map[7][4].length; i++){
+        System.out.print(map[7][4][0]);
         }
-         System.out.println("");
-         for(int i = 0; i < map[1][2].length; i++){
-        System.out.print(map[1][2][i]);
-        }
+         
       //return map;
        
     }
