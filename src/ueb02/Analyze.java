@@ -126,15 +126,19 @@ public class Analyze {
                 customer[idx] = product;
                 idx++;
                 warehouse = ArrayTools.deleteElementAt(warehouse, index).clone();
-                //System.out.print(warehouse.length+ "*");
                 counter++;
                 count--;
-             
+                System.out.println(count);
             } 
             map[from[0]][from[1]] = warehouse.clone();
         
-            if (isEmpty(to)) {
-                map[to[0]][to[1]] = customer.clone();
+            if (isEmpty(to)) {    
+                map[to[0]][to[1]] = new int[counter];
+                
+                for(int i = 0; i < map[to[0]][to[1]].length; i++){
+                    map[to[0]][to[1]][i] = customer[i];
+                }
+                
             } else {  
                 int [] customer2 = new int [counter + map[to[0]][to[1]].length];
                 int j = 0;
@@ -147,8 +151,7 @@ public class Analyze {
                     }    
                 }
                 map[to[0]][to[1]] = customer2.clone();
-            }
-            
+            }  
             return count;
         }
         return 0;
@@ -196,37 +199,38 @@ public class Analyze {
      * @return false if there is no warehouse with the product/not enough of the product; true otherwise
      */
     public static boolean transportOrdersOfOneSeries(int[][] orders) {
-        //TODO insert code that makes sense
+
         if (findNearestWarehouse(posDrone ,orders[0][2])!= null)  {
-            int [] warehouse;
+            int [] warehouse = new int [2];
             int [] customer = new int [2];
-            int noOfProducts; 
-            int product; 
+            int noOfProducts = 0;  
+            int product = 0; 
             for (int i = 0; i < orders.length; i++) {
                 product = orders[i][2];
                 warehouse = findNearestWarehouse(posDrone, product).clone();
                 customer [0] = orders[i][0]; 
-                customer [1] =  orders[i][1];
-                noOfProducts =  orders[i][3];
+                customer [1] = orders[i][1];
+                noOfProducts = orders[i][3];
                 
-                while (transportSameProducts(warehouse,
-                            customer, product, noOfProducts) != 0 && 
+                while (noOfProducts > 0 && 
                         findNearestWarehouse(posDrone ,product)!= null) {
                     flyDroneTo(warehouse);
-                    //System.out.print(posDrone[0]+posDrone[1]);
-                     //System.out.println(product);
-                    transportSameProducts(warehouse,
-                            customer, product, noOfProducts); 
+                   
                     noOfProducts = transportSameProducts(warehouse,
                             customer, product, noOfProducts);
                     
                     flyDroneTo(customer);
-                   //System.out.println(noOfProducts);
+                   //System.out.println(noOfProducts+" number of products");
                     if (findNearestWarehouse(posDrone ,orders[i][2])!= null){
                          warehouse = findNearestWarehouse(posDrone, product).clone();
                     } 
+                    
                 } 
             }
+                    if(noOfProducts > 0){
+                        System.err.println(noOfProducts +" product "+ product+ " missining in warehouses.");
+                        return false;
+                    }
             return true;
         }
         return false;
@@ -298,10 +302,12 @@ public class Analyze {
     }
     public static void getMap(){
         System.out.println(" ");
-        System.out.print(map[7][4].length);
+        System.out.println(map[7][4].length);
          for(int i = 0; i < map[7][4].length; i++){
-            System.out.print(map[7][4][i] + "h");
+            System.out.println(map[7][4][i] + "h");
         }
+      
+        
          
       //return map;
        
