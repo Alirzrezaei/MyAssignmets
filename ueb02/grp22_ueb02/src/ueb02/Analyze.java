@@ -5,42 +5,46 @@ import java.lang.Math;
 //import jdk.management.resource.internal.ApproverGroup;
 
 /**
- * Methods to manage the transport from products from warehouses to customers by drone.
- * 
+ * Methods to manage the transport from products from warehouses to customers by
+ * drone.
+ *
  * @author Capt'n Mo, klk
  */
 public class Analyze {
-    
-    
-    
+
 //<editor-fold defaultstate="collapsed" desc="constants">
-    /** signs to show for printing the map. */
+    /**
+     * signs to show for printing the map.
+     */
     //TODO insert code that makes sense
     private static final char WAREHOUSE = 'W';
-    private static final char EMPTY = 'E'; 
+    private static final char EMPTY = 'E';
     private static final char CUSTOMER = 'C';
-    /** position of service-station of the drone {@code POS_SERVICE}*/
+    /**
+     * position of service-station of the drone {@code POS_SERVICE}
+     */
     //TODO insert code that makes sense
-    private static final int [] POS_SERVICE = {0, 0};
+    private static final int[] POS_SERVICE = {0, 0};
 //</editor-fold>
-    
+
 //<editor-fold defaultstate="collapsed" desc="attributes">
     /**
      * the amount of units the drone flew. Default is 0. {@code units}
      */
     //TODO insert code that makes sense
-    private static  int unites = 0; 
+    public static int units = 0;
     /**
      * the current map working on. Default is the Map from Data. {@code map}
-     * 
-     */ 
-    //TODO insert code that makes sense
-    private static int [][][] map = Data.getMap();
-    /**
-     * the current position of the Drone. Default is POS_SERVICE. {@code posDrone}
+     *
      */
     //TODO insert code that makes sense
-    private static int [] posDrone = POS_SERVICE.clone();
+    private static int[][][] map = Data.getMap();
+    /**
+     * the current position of the Drone. Default is POS_SERVICE.
+     * {@code posDrone}
+     */
+    //TODO insert code that makes sense
+    public static int[] posDrone = POS_SERVICE.clone();
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="helping methods">
@@ -50,22 +54,21 @@ public class Analyze {
      * @param pos1 the first point
      * @param pos2 the second point
      * @return the Euclidean distance between those two points,
-     *         Integer.MAX_VALUE if invalid params
+     * Integer.MAX_VALUE if invalid params
      */
     private static int calcDistanceBetween(int[] pos1, int[] pos2) {
         //Math.ceil(), Math.sqrt(), Math.pow() may be used
         //TODO insert code that makes sense
-        
-        if( isValidPosition(pos1) && isValidPosition(pos2))
-        {
-            int distance = (int) Math.ceil(Math.sqrt(Math.pow((pos2[0] - pos1[0]), 2) +
-                    Math.pow((pos2[1] - pos1[1]), 2)));
-            return distance ;
+
+        if (isValidPosition(pos1) && isValidPosition(pos2)) {
+            int distance = (int) Math.ceil(Math.sqrt(Math.pow((pos2[0] - pos1[0]), 2)
+                    + Math.pow((pos2[1] - pos1[1]), 2)));
+            return distance;
         } else {
             return Integer.MAX_VALUE;
-        }      
+        }
     }
-    
+
     /**
      * Checks if the given position is valid in the map.
      *
@@ -74,37 +77,38 @@ public class Analyze {
      */
     private static boolean isValidPosition(int[] pos) {
         //TODO insert code that makes sense
-        return ((pos[1] <= Data.getMapDimensions()[1] && pos[0] <= Data.getMapDimensions()[0]) &&
-                (pos[0] >= 0 && pos[1] >= 0));
+        return ((pos[1] <= Data.getMapDimensions()[1] && pos[0] <= Data.getMapDimensions()[0])
+                && (pos[0] >= 0 && pos[1] >= 0));
     }
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="working methods">
     /**
      * Flies the drone from current position to a given position via the
-     * Euclidean distance. Prints the destination and flewn distance.
-     * Changes the attributes {@code units} and {@code posDrone}.
-     * If the given position isn_t valid, a message on serr is shown.
+     * Euclidean distance. Prints the destination and flewn distance. Changes
+     * the attributes {@code units} and {@code posDrone}. If the given position
+     * isn_t valid, a message on serr is shown.
      *
      * @param pos the position to fly to
-     * @return the distance flown by the drone; if the drone cannot fly -1 is returned
+     * @return the distance flown by the drone; if the drone cannot fly -1 is
+     * returned
      */
     private static int flyDroneTo(int[] pos) {
         //TODO insert code that makes sense
-        if(isValidPosition(pos)){
-            unites += calcDistanceBetween(posDrone, pos); 
-            posDrone = pos.clone(); 
-            return unites; 
-        }else {
+        if (isValidPosition(pos)) {
+            units += calcDistanceBetween(posDrone, pos);
+            posDrone = pos.clone();
+            return units;
+        } else {
             System.err.print("wrong position is given. ");
-            return -1;  
-         } 
+            return -1;
+        }
     }
-    
+
     /**
-     * Transports one product of an order to a specified position with the drone.
-     * Flies drone to from, collects count of ordered products at from and
-     * flies drone to to. If there aren't enough products at from, the
+     * Transports one product of an order to a specified position with the
+     * drone. Flies drone to from, collects count of ordered products at from
+     * and flies drone to to. If there aren't enough products at from, the
      * remaining count of the order is given as result.
      *
      * @param from the position of the warehouse to get the product at
@@ -114,48 +118,48 @@ public class Analyze {
      * @return count of products still to transport
      */
     private static int transportSameProducts(int[] from, int[] to, int product, int count) {
-        int [] warehouse = map[from[0]][from[1]].clone(); 
-        int [] customer = new int[count];
+        int[] warehouse = map[from[0]][from[1]].clone();
+        int[] customer = new int[count];
         int counter = 0;
-      
-        if(isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[0], from[1])){
-           int idx = 0;
-           int index;
-            while(ArrayTools.containsAt(warehouse, product)!= -1 && count != 0){
+
+        if (isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[0], from[1])) {
+            int idx = 0;
+            int index;
+            while (ArrayTools.containsAt(warehouse, product) != -1 && count != 0) {
                 index = ArrayTools.containsAt(warehouse, product);
                 customer[idx] = product;
                 idx++;
                 warehouse = ArrayTools.deleteElementAt(warehouse, index).clone();
                 counter++;
                 count--;
-            } 
+            }
             map[from[0]][from[1]] = warehouse.clone();
-        
-            if (isEmpty(to)) {    
+
+            if (isEmpty(to)) {
                 map[to[0]][to[1]] = new int[counter];
-                
-                for(int i = 0; i < map[to[0]][to[1]].length; i++){
+
+                for (int i = 0; i < map[to[0]][to[1]].length; i++) {
                     map[to[0]][to[1]][i] = customer[i];
                 }
-                
-            } else {  
-                int [] customer2 = new int [counter + map[to[0]][to[1]].length];
+
+            } else {
+                int[] customer2 = new int[counter + map[to[0]][to[1]].length];
                 int j = 0;
                 for (int i = 0; i < customer2.length; i++) {
-                    if(i < map[to[0]][to[1]].length){
-                    customer2[i] = map[to[0]][to[1]][i];
-                    }else{
+                    if (i < map[to[0]][to[1]].length) {
+                        customer2[i] = map[to[0]][to[1]][i];
+                    } else {
                         customer2[i] = customer[j];
                         j++;
-                    }    
+                    }
                 }
                 map[to[0]][to[1]] = customer2.clone();
-            }  
+            }
             return count;
         }
         return 0;
     }
-    
+
     /**
      * Determines the nearest warehouse for a specified position and product.
      *
@@ -167,116 +171,122 @@ public class Analyze {
     private static int[] findNearestWarehouse(int[] pos, int product) {
         //TODO insert code that makes sense
         boolean isWarehouse = false;
-        int [] nearestWarehouse = new int [2];
-        int distance = calcDistanceBetween(new int[] {0, 0}, Data.getMapDimensions());
-        for(int i = 0; i < map.length; i++){
-            for(int j = 0; j < map[i].length; j++){      
-                if(Data.isWarehouse(i, j) && ArrayTools.containsAt(map[i][j], product)!= -1){
+        int[] nearestWarehouse = new int[2];
+        int distance = calcDistanceBetween(new int[]{0, 0}, Data.getMapDimensions());
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if (Data.isWarehouse(i, j) && ArrayTools.containsAt(map[i][j], product) != -1) {
                     if (calcDistanceBetween(pos, new int[]{i, j}) < distance) {
-                        isWarehouse = true; 
+                        isWarehouse = true;
                         nearestWarehouse[0] = i;
-                        nearestWarehouse[1] = j;        
+                        nearestWarehouse[1] = j;
                         distance = calcDistanceBetween(pos, nearestWarehouse);
                     }
                 }
             }
         }
-        if(isWarehouse){
-            return nearestWarehouse; 
-        }else return null;
+        if (isWarehouse) {
+            return nearestWarehouse;
+        } else {
+            return null;
+        }
     }
+
     /**
-     * Transports an order-series by the drone.
-     * Process every order of the series. Prints the values of the order.
-     * Searches for the nearest warehouse with the product, 
-     * transports the ordered number of the product to the target address.
-     * If the first detected warehouse does not hold enough of the product,
-     * the next warehouse with the product has to be used.
-     * If there is no warehouse with the product, a message on serr is printed.
-     * After all orders have been delivered, the drone flies to the service-station.
+     * Transports an order-series by the drone. Process every order of the
+     * series. Prints the values of the order. Searches for the nearest
+     * warehouse with the product, transports the ordered number of the product
+     * to the target address. If the first detected warehouse does not hold
+     * enough of the product, the next warehouse with the product has to be
+     * used. If there is no warehouse with the product, a message on serr is
+     * printed. After all orders have been delivered, the drone flies to the
+     * service-station.
+     *
      * @param orders the order-series working on
-     * @return false if there is no warehouse with the product/not enough of the product; true otherwise
+     * @return false if there is no warehouse with the product/not enough of the
+     * product; true otherwise
      */
     public static boolean transportOrdersOfOneSeries(int[][] orders) {
-
-        if (findNearestWarehouse(posDrone ,orders[0][2])!= null)  {
-            int [] warehouse = new int [2];
-            int [] customer = new int [2];
-            int noOfProducts = 0;  
-            int product = 0; 
+        boolean isNotEnough = true;
+        if (findNearestWarehouse(posDrone, orders[0][2]) != null ) {
+            int[] warehouse = new int[2];
+            int[] customer = new int[2];
+            int noOfProducts = 0;
+            int product = 0;
             for (int i = 0; i < orders.length; i++) {
                 product = orders[i][2];
                 warehouse = findNearestWarehouse(posDrone, product).clone();
-                customer [0] = orders[i][0]; 
-                customer [1] = orders[i][1];
+                customer[0] = orders[i][0];
+                customer[1] = orders[i][1];
+                if(Data.isWarehouse(customer[0], customer[1])){
+                    isNotEnough = false;
+                }
                 noOfProducts = orders[i][3];
                 System.out.println("deliver " + noOfProducts + " of product "
-                        + product + " to ("+customer[0] +"/" + customer[1] +")" );
-                while (noOfProducts > 0 && 
-                        findNearestWarehouse(posDrone ,product)!= null) {
-                    
-                   System.out.println("fly Drone to (" + warehouse[0]+ "/"+warehouse[1]+
-                           ") distance " + calcDistanceBetween(posDrone, warehouse));
-                   flyDroneTo(warehouse);
+                        + product + " to (" + customer[0] + "/" + customer[1] + ")");
+                while (noOfProducts > 0
+                        && findNearestWarehouse(posDrone, product) != null) {
+
+                    System.out.println("fly Drone to (" + warehouse[0] + "/" + warehouse[1]
+                            + ") distance " + calcDistanceBetween(posDrone, warehouse));
+                    flyDroneTo(warehouse);
                     noOfProducts = transportSameProducts(warehouse,
                             customer, product, noOfProducts);
-                    System.out.println("fly Drone to (" + customer[0]+ "/"+customer[1]+
-                           ") distance " + calcDistanceBetween(posDrone, customer));
+                    System.out.println("fly Drone to (" + customer[0] + "/" + customer[1]
+                            + ") distance " + calcDistanceBetween(posDrone, customer));
                     flyDroneTo(customer);
-                   //System.out.println(noOfProducts+" number of products");
-                    if (findNearestWarehouse(posDrone ,orders[i][2])!= null){
-                         warehouse = findNearestWarehouse(posDrone, product).clone();
-                    } 
-                    
-                } 
-            }
-            System.out.println("fly Drone to (" + POS_SERVICE[0]+ "/"+POS_SERVICE[1]+
-                           ") distance " + calcDistanceBetween(posDrone, POS_SERVICE));
-            flyDroneTo(POS_SERVICE);
-                    if(noOfProducts > 0){
-                        System.err.println(noOfProducts +" product "+ product+ " missining in warehouses.");
-                        return false;
+                    //System.out.println(noOfProducts+" number of products");
+                    if (findNearestWarehouse(posDrone, orders[i][2]) != null) {
+                        warehouse = findNearestWarehouse(posDrone, product).clone();
                     }
-            return true;
+
+                }
+                 if (noOfProducts > 0) {
+                System.err.println(noOfProducts + " product " + product + " missining in warehouses.");
+                isNotEnough = false;
+            }
+            }
+            System.out.println("fly Drone to (" + POS_SERVICE[0] + "/" + POS_SERVICE[1]
+                    + ") distance " + calcDistanceBetween(posDrone, POS_SERVICE));
+            flyDroneTo(POS_SERVICE);
+           
+            return isNotEnough;
         }
         return false;
     }
-    
-//</editor-fold>
 
+//</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Output">
     /**
-     * Prints the current map to sout.
-     * The signs declared in constants at begin of the class are used to 
-     * visualize the cells.
+     * Prints the current map to sout. The signs declared in constants at begin
+     * of the class are used to visualize the cells.
      */
     public static void printCurrentState() {
         //TODO insert code that makes sense
         System.out.println("----------------------------------------");
-        for(int i =0; i < Data.getMapDimensions()[1] ; i++){
-            for(int j = 0; j < Data.getMapDimensions()[0]; j++){
-                if(Data.isWarehouse(j, i)){
+        for (int i = 0; i < Data.getMapDimensions()[1]; i++) {
+            for (int j = 0; j < Data.getMapDimensions()[0]; j++) {
+                if (Data.isWarehouse(j, i)) {
                     System.out.print(WAREHOUSE);
-                }
-                else if(map[j][i].length > 0){
+                } else if (map[j][i].length > 0) {
                     System.out.print(CUSTOMER);
-                }
-                else{
+                } else {
                     System.out.print(EMPTY);
                 }
-                for(int k = 0; k < map[j][i].length; k++){
+                for (int k = 0; k < map[j][i].length; k++) {
                     System.out.print(map[j][i][k]);
-                } System.out.print(" ");
+                }
+                System.out.print(" ");
             }
             System.out.println("");
         }
-        System.out.println("Drone now at " + POS_SERVICE [0]+ "/" + POS_SERVICE[1] + " flew " +unites + " units");
+        System.out.println("Drone now at " + POS_SERVICE[0] + "/" + POS_SERVICE[1] + " flew " + units + " units");
         System.out.println("----------------------------------------");
     }
 
     /**
-     * Determines the maximum length of a given
-     * {@code column} in the map-array. Used for nice output only.
+     * Determines the maximum length of a given {@code column} in the map-array.
+     * Used for nice output only.
      *
      * @param column the given column
      * @return the maximum of the length of all cells in the given
@@ -284,10 +294,8 @@ public class Analyze {
      */
     private static int getPrintWidthPerColumn(int column) {
         //TODO insert code that makes sense
-       
-           return ArrayTools.getLengthOfLongestArray(map[column]);
 
-        
+        return ArrayTools.getLengthOfLongestArray(map[column]);
 
     }
     //</editor-fold>
@@ -297,54 +305,59 @@ public class Analyze {
      */
     public static void resetToOrigState() {
         //TODO insert code that makes sense
-        unites = 0; 
+        units = 0;
         map = Data.getMap();
         posDrone = POS_SERVICE;
     }
-    
+
     /**
      * Helper method to test private methods.
+     *
      * @param pos1 first point that drone start from it
      * @param pos2 second point that drone finish there
-     * @return integer number as distance that drone flew or max value of integer
-     * if the positions are not valid
+     * @return integer number as distance that drone flew or max value of
+     * integer if the positions are not valid
      */
-    public static int distance(int[] pos1, int[] pos2){
-        return calcDistanceBetween(pos1, pos2); 
+    public static int distance(int[] pos1, int[] pos2) {
+        return calcDistanceBetween(pos1, pos2);
     }
+
     /**
-     * Helper method to give the distance of the the drone from current position to 
-     * the given position.
-     * @param pos the position that the drone should fly to. 
-     * @return distance between to positions and -1 if the the position is not valid. 
+     * Helper method to give the distance of the the drone from current position
+     * to the given position.
+     *
+     * @param pos the position that the drone should fly to.
+     * @return distance between to positions and -1 if the the position is not
+     * valid.
      */
-    public static int flownDrone(int [] pos){
-        return flyDroneTo(pos); 
+    public static int flownDrone(int[] pos) {
+        return flyDroneTo(pos);
     }
-    public static int transportSameProduct(int[] from, int[] to, int product, int count){
+
+    public static int transportSameProduct(int[] from, int[] to, int product, int count) {
         return transportSameProducts(from, to, product, count);
     }
-    public static int [] FindNearestWarehous(int[] pos, int product){
+
+    public static int[] FindNearestWarehous(int[] pos, int product) {
         return findNearestWarehouse(pos, product);
     }
-    private static boolean isEmpty(int [] pos){
+
+    private static boolean isEmpty(int[] pos) {
         return map[pos[0]][pos[1]].length < 1;
     }
+
     public static int GetPrintWidthPerColumn(int column) {
         return getPrintWidthPerColumn(column);
     }
 
-    public static void getMap(){
+    public static void getMap() {
         System.out.println(" ");
         System.out.println(map[7][4].length);
-         for(int i = 0; i < map[7][4].length; i++){
+        for (int i = 0; i < map[7][4].length; i++) {
             System.out.println(map[7][4][i] + "h");
         }
-      
-        
-         
+
       //return map;
-       
     }
 
 }

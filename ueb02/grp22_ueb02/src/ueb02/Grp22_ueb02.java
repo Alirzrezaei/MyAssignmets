@@ -26,5 +26,4 @@ public class Grp22_ueb02 {
             Analyze.printCurrentState();
         }     
     }
-
 }
