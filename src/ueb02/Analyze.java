@@ -32,7 +32,7 @@ public class Analyze {
      * the amount of units the drone flew. Default is 0. {@code units}
      */
     //TODO insert code that makes sense
-    public static int units = 0;
+    private static int units = 0;
     /**
      * the current map working on. Default is the Map from Data. {@code map}
      *
@@ -44,7 +44,7 @@ public class Analyze {
      * {@code posDrone}
      */
     //TODO insert code that makes sense
-    public static int[] posDrone = POS_SERVICE.clone();
+    private static int[] posDrone = POS_SERVICE.clone();
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="helping methods">
@@ -58,7 +58,7 @@ public class Analyze {
      */
     private static int calcDistanceBetween(int[] pos1, int[] pos2) {
         //Math.ceil(), Math.sqrt(), Math.pow() may be used
-        //TODO insert code that makes sense
+        //TODO insert code that makes sense DONE
 
         if (isValidPosition(pos1) && isValidPosition(pos2)) {
             int distance = (int) Math.ceil(Math.sqrt(Math.pow((pos2[0] - pos1[0]), 2)
@@ -76,7 +76,7 @@ public class Analyze {
      * @return true, if pos is a valid position in the map
      */
     private static boolean isValidPosition(int[] pos) {
-        //TODO insert code that makes sense
+        //TODO insert code that makes sense DONE
         return ((pos[1] <= Data.getMapDimensions()[1] && pos[0] <= Data.getMapDimensions()[0])
                 && (pos[0] >= 0 && pos[1] >= 0));
     }
@@ -94,7 +94,7 @@ public class Analyze {
      * returned
      */
     private static int flyDroneTo(int[] pos) {
-        //TODO insert code that makes sense
+         //TODO insert code that makes sense DONE
         if (isValidPosition(pos)) {
             units += calcDistanceBetween(posDrone, pos);
             posDrone = pos.clone();
@@ -118,6 +118,7 @@ public class Analyze {
      * @return count of products still to transport
      */
     private static int transportSameProducts(int[] from, int[] to, int product, int count) {
+         //TODO insert code that makes sense DONE
         int[] warehouse = map[from[0]][from[1]].clone();
         int[] customer = new int[count];
         int counter = 0;
@@ -169,7 +170,7 @@ public class Analyze {
      * {@code product}; null if there is no warehouse having the product
      */
     private static int[] findNearestWarehouse(int[] pos, int product) {
-        //TODO insert code that makes sense
+        //TODO insert code that makes sense DONE
         boolean isWarehouse = false;
         int[] nearestWarehouse = new int[2];
         int distance = calcDistanceBetween(new int[]{0, 0}, Data.getMapDimensions());
@@ -207,7 +208,9 @@ public class Analyze {
      * product; true otherwise
      */
     public static boolean transportOrdersOfOneSeries(int[][] orders) {
+        //TODO insert code that makes sense DONE
         boolean isNotEnough = true;
+        
         if (findNearestWarehouse(posDrone, orders[0][2]) != null ) {
             int[] warehouse = new int[2];
             int[] customer = new int[2];
@@ -262,7 +265,7 @@ public class Analyze {
      * of the class are used to visualize the cells.
      */
     public static void printCurrentState() {
-        //TODO insert code that makes sense
+        //TODO insert code that makes sense DONE
         System.out.println("----------------------------------------");
         for (int i = 0; i < Data.getMapDimensions()[1]; i++) {
             for (int j = 0; j < Data.getMapDimensions()[0]; j++) {
@@ -293,8 +296,7 @@ public class Analyze {
      * {@code column} plus 1 (for the sign of one's cell)
      */
     private static int getPrintWidthPerColumn(int column) {
-        //TODO insert code that makes sense
-
+     //TODO insert code that makes sense DONE
         return ArrayTools.getLengthOfLongestArray(map[column]);
 
     }
@@ -304,7 +306,7 @@ public class Analyze {
      * resetting every value to its default
      */
     public static void resetToOrigState() {
-        //TODO insert code that makes sense
+     //TODO insert code that makes sense DONE
         units = 0;
         map = Data.getMap();
         posDrone = POS_SERVICE;
