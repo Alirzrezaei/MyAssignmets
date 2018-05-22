@@ -8,6 +8,7 @@ package ueb02;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
+
 /**
  *
  * @author Reyhan
@@ -157,4 +158,5 @@ public class AnalyzeNGTest {
        Analyze.resetToOrigState();
         assertEquals(1, Analyze.GetPrintWidthPerColumn(4));
    }
+ 
 }
