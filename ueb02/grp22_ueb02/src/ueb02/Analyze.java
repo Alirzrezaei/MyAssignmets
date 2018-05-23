@@ -94,7 +94,7 @@ public class Analyze {
      * returned
      */
     private static int flyDroneTo(int[] pos) {
-         //TODO insert code that makes sense DONE
+        //TODO insert code that makes sense DONE
         if (isValidPosition(pos)) {
             units += calcDistanceBetween(posDrone, pos);
             posDrone = pos.clone();
@@ -118,7 +118,7 @@ public class Analyze {
      * @return count of products still to transport
      */
     private static int transportSameProducts(int[] from, int[] to, int product, int count) {
-         //TODO insert code that makes sense DONE
+        //TODO insert code that makes sense DONE
         int[] warehouse = map[from[0]][from[1]].clone();
         int[] customer = new int[count];
         int counter = 0;
@@ -209,8 +209,7 @@ public class Analyze {
     public static boolean transportOrdersOfOneSeries(int[][] orders) {
         //TODO insert code that makes sense DONE
         boolean isNotEnough = true;
-        
-        if (findNearestWarehouse(posDrone, orders[0][2]) != null ) {
+        if (findNearestWarehouse(posDrone, orders[0][2]) != null) {
             int[] warehouse = new int[2];
             int[] customer = new int[2];
             int noOfProducts = 0;
@@ -220,7 +219,7 @@ public class Analyze {
                 warehouse = findNearestWarehouse(posDrone, product).clone();
                 customer[0] = orders[i][0];
                 customer[1] = orders[i][1];
-                if(Data.isWarehouse(customer[0], customer[1])){
+                if (Data.isWarehouse(customer[0], customer[1])) {
                     isNotEnough = false;
                 }
                 noOfProducts = orders[i][3];
@@ -241,17 +240,15 @@ public class Analyze {
                     if (findNearestWarehouse(posDrone, orders[i][2]) != null) {
                         warehouse = findNearestWarehouse(posDrone, product).clone();
                     }
-
                 }
-                 if (noOfProducts > 0) {
-                System.err.println(noOfProducts + " product " + product + " missining in warehouses.");
-                isNotEnough = false;
-            }
+                if (noOfProducts > 0) {
+                    System.err.println(noOfProducts + " product " + product + " missining in warehouses.");
+                    isNotEnough = false;
+                }
             }
             System.out.println("fly Drone to (" + POS_SERVICE[0] + "/" + POS_SERVICE[1]
                     + ") distance " + calcDistanceBetween(posDrone, POS_SERVICE));
             flyDroneTo(POS_SERVICE);
-           
             return isNotEnough;
         }
         return false;
@@ -295,7 +292,7 @@ public class Analyze {
      * {@code column} plus 1 (for the sign of one's cell)
      */
     private static int getPrintWidthPerColumn(int column) {
-     //TODO insert code that makes sense DONE
+        //TODO insert code that makes sense DONE
         return ArrayTools.getLengthOfLongestArray(map[column]);
 
     }
@@ -305,7 +302,7 @@ public class Analyze {
      * resetting every value to its default
      */
     public static void resetToOrigState() {
-     //TODO insert code that makes sense DONE
+        //TODO insert code that makes sense DONE
         units = 0;
         map = Data.getMap();
         posDrone = POS_SERVICE;
@@ -334,19 +331,25 @@ public class Analyze {
     public static int flownDrone(int[] pos) {
         return flyDroneTo(pos);
     }
-/**
- * transfer the product from warehouse  to customer cell with the count number of the product
- * @param from is the nearest warehouse
- * @param to the position of customer
- * @param product is the product id
- * @param count is the number of the products
- * @return the remaining the numbedr of products
- */
+
+    /**
+     * transfer the product from warehouse to customer cell with the count
+     * number of the product
+     *
+     * @param from is the nearest warehouse
+     * @param to the position of customer
+     * @param product is the product id
+     * @param count is the number of the products
+     * @return the remaining the numbedr of products
+     */
     public static int transportSameProduct(int[] from, int[] to, int product, int count) {
         return transportSameProducts(from, to, product, count);
     }
+
     /**
-     *this is the helper method for rivate method this method return the position of nearest warehouse 
+     * this is the helper method for rivate method this method return the
+     * position of nearest warehouse
+     *
      * @param pos is the current position
      * @param product is the [roduct
      * @return the position of warehouse
@@ -355,28 +358,33 @@ public class Analyze {
     public static int[] FindNearestWarehous(int[] pos, int product) {
         return findNearestWarehouse(pos, product);
     }
+
     /**
      * this method check the given position is empty or not
+     *
      * @param pos is the given position
      * @return true if the given position is empty
      */
     private static boolean isEmpty(int[] pos) {
         return map[pos[0]][pos[1]].length < 1;
     }
-   /**
-    * prints the width of the given column
-    * @param column is the given column
-    * @return the length od the column
-    */
+
+    /**
+     * prints the width of the given column
+     *
+     * @param column is the given column
+     * @return the length od the column
+     */
     public static int GetPrintWidthPerColumn(int column) {
         return getPrintWidthPerColumn(column);
     }
+
     /**
      * this method is checking the map
-     * 
+     *
      */
     public static int[][][] getMap() {
-      return map;
+        return map;
     }
 
 }

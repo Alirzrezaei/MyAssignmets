@@ -132,6 +132,7 @@ public class Data {
             return productlist;
         }
     }
+
     /**
      * Gets a (deep!) copy of the whole map of the initial situation.
      *
