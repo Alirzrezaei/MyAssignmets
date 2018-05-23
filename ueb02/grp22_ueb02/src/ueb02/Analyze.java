@@ -9,6 +9,8 @@ import java.lang.Math;
  * drone.
  *
  * @author Capt'n Mo, klk
+ * 
+ * TODO: Use the constants provided by the Data class
  */
 public class Analyze {
 
@@ -354,7 +356,6 @@ public class Analyze {
      * @param product is the [roduct
      * @return the position of warehouse
      */
-
     public static int[] FindNearestWarehous(int[] pos, int product) {
         return findNearestWarehouse(pos, product);
     }

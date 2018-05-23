@@ -35,6 +35,7 @@ public class ArrayTools {
      * @return a new array not containing the {@code idx}-th value, null if
      * invalid params
      */
+    // TODO: Handle null arrays and negative indices
     public static int[] deleteElementAt(int[] array, int idx) {
 
         if (!isEmpty(array)) {
@@ -68,6 +69,7 @@ public class ArrayTools {
      * @return a new array containing at {@code idx} the given {@code value},
      * null if invalid params
      */
+    // TODO: Handle null arrays and negative indices
     public static int[] insertElementAt(int[] array, int idx, int value) {
 
         if (isEmpty(array) && idx == 0) {
@@ -108,6 +110,7 @@ public class ArrayTools {
      * @return length of longest array in given array, -1 if array is null or
      * length of array is 0
      */
+    // TODO: Handle null arrays and null values inside the array
     public static int getLengthOfLongestArray(int[][] array) {
         int length = 0;
         if (array.length > 0) {
