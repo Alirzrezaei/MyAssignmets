@@ -2,6 +2,7 @@ package ueb02;
 
 //import static ueb02.ArrayTools.*;
 import java.lang.Math;
+import static ueb02.Data.*;
 //import jdk.management.resource.internal.ApproverGroup;
 
 /**
@@ -10,7 +11,7 @@ import java.lang.Math;
  *
  * @author Capt'n Mo, klk
  * 
- * TODO: Use the constants provided by the Data class
+ * TODO: DONE Use the constants provided by the Data class
  */
 public class Analyze {
 
@@ -121,11 +122,11 @@ public class Analyze {
      */
     private static int transportSameProducts(int[] from, int[] to, int product, int count) {
         //TODO insert code that makes sense DONE
-        int[] warehouse = map[from[0]][from[1]].clone();
+        int[] warehouse = map[from[X]][from[Y]].clone();
         int[] customer = new int[count];
         int counter = 0;
 
-        if (isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[0], from[1])) {
+        if (isValidPosition(to) && isValidPosition(from) && Data.isWarehouse(from[X], from[Y])) {
             int idx = 0;
             int index;
             while (ArrayTools.containsAt(warehouse, product) != -1 && count != 0) {
@@ -136,26 +137,26 @@ public class Analyze {
                 counter++;
                 count--;
             }
-            map[from[0]][from[1]] = warehouse.clone();
+            map[from[X]][from[Y]] = warehouse.clone();
 
             if (isEmpty(to)) {
-                map[to[0]][to[1]] = new int[counter];
+                map[to[X]][to[Y]] = new int[counter];
 
-                for (int i = 0; i < map[to[0]][to[1]].length; i++) {
-                    map[to[0]][to[1]][i] = customer[i];
+                for (int i = 0; i < map[to[X]][to[Y]].length; i++) {
+                    map[to[X]][to[Y]][i] = customer[i];
                 }
             } else {
-                int[] customer2 = new int[counter + map[to[0]][to[1]].length];
+                int[] customer2 = new int[counter + map[to[X]][to[Y]].length];
                 int j = 0;
                 for (int i = 0; i < customer2.length; i++) {
-                    if (i < map[to[0]][to[1]].length) {
-                        customer2[i] = map[to[0]][to[1]][i];
+                    if (i < map[to[X]][to[Y]].length) {
+                        customer2[i] = map[to[X]][to[Y]][i];
                     } else {
                         customer2[i] = customer[j];
                         j++;
                     }
                 }
-                map[to[0]][to[1]] = customer2.clone();
+                map[to[X]][to[Y]] = customer2.clone();
             }
             return count;
         }
@@ -211,35 +212,35 @@ public class Analyze {
     public static boolean transportOrdersOfOneSeries(int[][] orders) {
         //TODO insert code that makes sense DONE
         boolean isNotEnough = true;
-        if (findNearestWarehouse(posDrone, orders[0][2]) != null) {
+        if (findNearestWarehouse(posDrone, orders[X][ID]) != null) {
             int[] warehouse = new int[2];
             int[] customer = new int[2];
             int noOfProducts = 0;
             int product = 0;
             for (int i = 0; i < orders.length; i++) {
-                product = orders[i][2];
+                product = orders[i][ID];
                 warehouse = findNearestWarehouse(posDrone, product).clone();
-                customer[0] = orders[i][0];
-                customer[1] = orders[i][1];
-                if (Data.isWarehouse(customer[0], customer[1])) {
+                customer[X] = orders[i][X];
+                customer[Y] = orders[i][Y];
+                if (Data.isWarehouse(customer[X], customer[Y])) {
                     isNotEnough = false;
                 }
-                noOfProducts = orders[i][3];
+                noOfProducts = orders[i][CT];
                 System.out.println("deliver " + noOfProducts + " of product "
-                        + product + " to (" + customer[0] + "/" + customer[1] + ")");
+                        + product + " to (" + customer[X] + "/" + customer[Y] + ")");
                 while (noOfProducts > 0
                         && findNearestWarehouse(posDrone, product) != null) {
 
-                    System.out.println("fly Drone to (" + warehouse[0] + "/" + warehouse[1]
+                    System.out.println("fly Drone to (" + warehouse[X] + "/" + warehouse[Y]
                             + ") distance " + calcDistanceBetween(posDrone, warehouse));
                     flyDroneTo(warehouse);
                     noOfProducts = transportSameProducts(warehouse,
                             customer, product, noOfProducts);
-                    System.out.println("fly Drone to (" + customer[0] + "/" + customer[1]
+                    System.out.println("fly Drone to (" + customer[X] + "/" + customer[Y]
                             + ") distance " + calcDistanceBetween(posDrone, customer));
                     flyDroneTo(customer);
                     //System.out.println(noOfProducts+" number of products");
-                    if (findNearestWarehouse(posDrone, orders[i][2]) != null) {
+                    if (findNearestWarehouse(posDrone, orders[i][ID]) != null) {
                         warehouse = findNearestWarehouse(posDrone, product).clone();
                     }
                 }
@@ -248,7 +249,7 @@ public class Analyze {
                     isNotEnough = false;
                 }
             }
-            System.out.println("fly Drone to (" + POS_SERVICE[0] + "/" + POS_SERVICE[1]
+            System.out.println("fly Drone to (" + POS_SERVICE[X] + "/" + POS_SERVICE[Y]
                     + ") distance " + calcDistanceBetween(posDrone, POS_SERVICE));
             flyDroneTo(POS_SERVICE);
             return isNotEnough;
@@ -281,7 +282,7 @@ public class Analyze {
             }
             System.out.println("");
         }
-        System.out.println("Drone now at " + POS_SERVICE[0] + "/" + POS_SERVICE[1] + " flew " + units + " units");
+        System.out.println("Drone now at " + POS_SERVICE[X] + "/" + POS_SERVICE[Y] + " flew " + units + " units");
         System.out.println("----------------------------------------");
     }
 
@@ -367,7 +368,7 @@ public class Analyze {
      * @return true if the given position is empty
      */
     private static boolean isEmpty(int[] pos) {
-        return map[pos[0]][pos[1]].length < 1;
+        return map[pos[X]][pos[Y]].length < 1;
     }
 
     /**
@@ -387,5 +388,6 @@ public class Analyze {
     public static int[][][] getMap() {
         return map;
     }
+    
 
 }
