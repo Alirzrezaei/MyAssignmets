@@ -2,9 +2,11 @@ package ueb02;
 
 /**
  * Helping methods for analyzing an array.
+ *
  * @author klk
  */
 public class ArrayTools {
+
     /**
      * this method determines if a certain {@code value} is containing in a
      * given {@code array} and returns the position of the first occurrence.
@@ -14,13 +16,12 @@ public class ArrayTools {
      * @return the position of the first occurrence of the value, if not then -1
      */
     public static int containsAt(int[] array, int value) {
-       
+
         if (array.length > 0) {
             for (int i = 0; i < array.length; i++) {
                 if (array[i] == value) {
                     return i;
                 }
-
             }
         }
         return -1;
@@ -35,13 +36,12 @@ public class ArrayTools {
      * invalid params
      */
     public static int[] deleteElementAt(int[] array, int idx) {
-      
+
         if (!isEmpty(array)) {
             if (array.length == 1) {
                 int[] newArray = {};
                 return newArray;
-            } 
-           else if (idx < array.length) {
+            } else if (idx < array.length) {
                 int[] newArray = new int[array.length - 1];
                 int j = 0;
                 for (int i = 0; i < newArray.length; i++) {
@@ -52,8 +52,9 @@ public class ArrayTools {
                     j++;
                 }
                 return newArray;
+            } else {
+                return null;
             }
-           else{return null;}
 
         }
         return null;
@@ -69,7 +70,7 @@ public class ArrayTools {
      * null if invalid params
      */
     public static int[] insertElementAt(int[] array, int idx, int value) {
-         
+
         if (isEmpty(array) && idx == 0) {
             int[] newArray = new int[1];
             newArray[0] = value;
@@ -84,26 +85,29 @@ public class ArrayTools {
                 }
                 newArray[j] = array[i];
                 j++;
-            } 
+            }
             return newArray;
         } else {
             return null;
         }
     }
+
     /**
      * Helper method to check if the array is empty.
+     *
      * @param array
-     * @return True if the array is empty. 
+     * @return True if the array is empty.
      */
-    public static boolean isEmpty(int [] array){
-        return array.length < 1; 
+    public static boolean isEmpty(int[] array) {
+        return array.length < 1;
     }
-    
+
     /**
      * Gets the length of the longest array in given array.
+     *
      * @param array 2-dimensional array to look in
-     * @return length of longest array in given array, 
-     *         -1 if array is null or length of array is 0
+     * @return length of longest array in given array, -1 if array is null or
+     * length of array is 0
      */
     public static int getLengthOfLongestArray(int[][] array) {
         int length = 0;

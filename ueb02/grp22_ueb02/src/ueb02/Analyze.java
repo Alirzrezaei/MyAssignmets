@@ -335,31 +335,49 @@ public class Analyze {
     public static int flownDrone(int[] pos) {
         return flyDroneTo(pos);
     }
-
+/**
+ * transfer the product from warehouse  to customer cell with the count number of the product
+ * @param from is the nearest warehouse
+ * @param to the position of customer
+ * @param product is the product id
+ * @param count is the number of the products
+ * @return the remaining the numbedr of products
+ */
     public static int transportSameProduct(int[] from, int[] to, int product, int count) {
         return transportSameProducts(from, to, product, count);
     }
+    /**
+     *this is the helper method for rivate method this method return the position of nearest warehouse 
+     * @param pos is the current position
+     * @param product is the [roduct
+     * @return the position of warehouse
+     */
 
     public static int[] FindNearestWarehous(int[] pos, int product) {
         return findNearestWarehouse(pos, product);
     }
-
+    /**
+     * this method check the given position is empty or not
+     * @param pos is the given position
+     * @return true if the given position is empty
+     */
     private static boolean isEmpty(int[] pos) {
         return map[pos[0]][pos[1]].length < 1;
     }
-
+   /**
+    * prints the width of the given column
+    * @param column is the given column
+    * @return the length od the column
+    */
     public static int GetPrintWidthPerColumn(int column) {
         return getPrintWidthPerColumn(column);
     }
-
-    public static void getMap() {
-        System.out.println(" ");
-        System.out.println(map[7][4].length);
-        for (int i = 0; i < map[7][4].length; i++) {
-            System.out.println(map[7][4][i] + "h");
-        }
-
-      //return map;
+    /**
+     * this method is checking the map
+     * 
+     */
+    public static int[][][] getMap() {
+      return map;
     }
 
 }
