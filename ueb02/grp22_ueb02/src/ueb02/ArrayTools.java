@@ -55,7 +55,6 @@ public class ArrayTools {
             } else {
                 return null;
             }
-
         }
         return null;
     }

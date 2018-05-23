@@ -142,7 +142,6 @@ public class Analyze {
                 for (int i = 0; i < map[to[0]][to[1]].length; i++) {
                     map[to[0]][to[1]][i] = customer[i];
                 }
-
             } else {
                 int[] customer2 = new int[counter + map[to[0]][to[1]].length];
                 int j = 0;
