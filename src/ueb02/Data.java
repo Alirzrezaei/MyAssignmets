@@ -8,11 +8,9 @@ package ueb02;
  *
  * public constants determine the sequence of the dimensions of an order
  *
- * public getter 
- * - get the dimensions of the box 
- * - get the count of orderseries
- * - get one orderseries containing multiple orders 
- * - get the map of the initial situation
+ * public getter - get the dimensions of the box - get the count of orderseries
+ * - get one orderseries containing multiple orders - get the map of the initial
+ * situation
  *
  * @author Capt'n Mo, klk
  */
@@ -88,8 +86,8 @@ public class Data {
      *
      * @return the dimensions of the map
      */
-    public static int[] getMapDimensions() { 
-        return new int [] {MAP.length , MAP[0].length}; 
+    public static int[] getMapDimensions() {
+        return new int[]{MAP.length, MAP[0].length};
     }
 
     /**
@@ -118,16 +116,15 @@ public class Data {
      * returned.
      *
      * @param idx idx of the orderseries
-     * @return a copy of the productlist of one orderseries; 
-     *         null if the idx isn't valid
+     * @return a copy of the productlist of one orderseries; null if the idx
+     * isn't valid
      */
     public static int[][] getOrderSeries(int idx) {
-        
+
         if (idx >= ORDER_SERIES.length || idx < 0) {
             System.err.print("invalid index ");
             return null;
-        }
-        else {
+        } else {
             int[][] productlist = new int[ORDER_SERIES[idx].length][];
             for (int i = 0; i < ORDER_SERIES[idx].length; i++) {
                 productlist[i] = ORDER_SERIES[idx][i].clone();
@@ -142,12 +139,12 @@ public class Data {
      * @return a copy of the whole map of the initial situation.
      */
     public static int[][][] getMap() {
-        int[][][] copyMAP= new int[MAP.length][MAP[0].length][];
-            for (int i = 0; i < MAP.length; i++) {
-                for(int j =0 ; j < MAP[i].length; j++){
-                    copyMAP[i][j] = MAP[i][j].clone();  
-                }
+        int[][][] copyMAP = new int[MAP.length][MAP[0].length][];
+        for (int i = 0; i < MAP.length; i++) {
+            for (int j = 0; j < MAP[i].length; j++) {
+                copyMAP[i][j] = MAP[i][j].clone();
             }
+        }
         return copyMAP;
     }
 
