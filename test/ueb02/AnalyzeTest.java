@@ -5,17 +5,16 @@
  */
 package ueb02;
 
-import static org.testng.Assert.*;
-import org.testng.annotations.Test;
-
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
- * TODO: Use JUnit
- * @author Reyhan
+ *
+ * @author ite102770
  */
-public class AnalyzeNGTest {
+public class AnalyzeTest {
     
-    public AnalyzeNGTest() {
+    public AnalyzeTest() {
     }
 
     @Test
@@ -159,4 +158,5 @@ public class AnalyzeNGTest {
         assertEquals(1, Analyze.GetPrintWidthPerColumn(4));
    }
  
+    
 }
