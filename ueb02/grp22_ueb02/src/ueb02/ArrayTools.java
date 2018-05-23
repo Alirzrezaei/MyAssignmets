@@ -35,15 +35,11 @@ public class ArrayTools {
      * @return a new array not containing the {@code idx}-th value, null if
      * invalid params
      */
-    // TODO: Handle null arrays and negative indices
+    // TODO DONE: Handle null arrays and negative indices
     public static int[] deleteElementAt(int[] array, int idx) {
-
-        if (!isEmpty(array)) {
-            if (array.length == 1) {
-                int[] newArray = {};
-                return newArray;
-            } else if (idx < array.length) {
-                int[] newArray = new int[array.length - 1];
+        if (!isEmpty(array) && idx < array.length && idx >= 0) {
+            if ( array.length > 1) {
+               int[] newArray = new int[array.length - 1];
                 int j = 0;
                 for (int i = 0; i < newArray.length; i++) {
                     if (j == idx) {
@@ -53,8 +49,9 @@ public class ArrayTools {
                     j++;
                 }
                 return newArray;
-            } else {
-                return null;
+            } 
+            else {
+                return  new int[0];
             }
         }
         return null;
@@ -69,7 +66,7 @@ public class ArrayTools {
      * @return a new array containing at {@code idx} the given {@code value},
      * null if invalid params
      */
-    // TODO: Handle null arrays and negative indices
+    // TODO DONE: Handle null arrays and negative indices
     public static int[] insertElementAt(int[] array, int idx, int value) {
 
         if (isEmpty(array) && idx == 0) {
@@ -100,7 +97,7 @@ public class ArrayTools {
      * @return True if the array is empty.
      */
     public static boolean isEmpty(int[] array) {
-        return array.length < 1;
+        return array == null || array.length < 1;
     }
 
     /**
@@ -110,16 +107,22 @@ public class ArrayTools {
      * @return length of longest array in given array, -1 if array is null or
      * length of array is 0
      */
-    // TODO: Handle null arrays and null values inside the array
+    // TODO: Handle null arrays and null values inside the array    
     public static int getLengthOfLongestArray(int[][] array) {
-        int length = 0;
-        if (array.length > 0) {
-            for (int i = 0; i < array.length; i++) {
-                if (array[i].length > length) {
-                    length = array[i].length;
+
+        if (array != null && array.length > 0) {
+            int length = 0;
+            if (array.length > 0) {
+                for (int i = 0; i < array.length; i++) {
+                    if(isEmpty(array[i])){
+                        return -1;
+                    }
+                    if (array[i].length > length) {
+                        length = array[i].length;
+                    }
                 }
+                return length;
             }
-            return length;
         }
         return -1;
     }

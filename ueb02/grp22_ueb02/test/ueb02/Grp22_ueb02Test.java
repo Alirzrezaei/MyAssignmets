@@ -5,16 +5,16 @@
  */
 package ueb02;
 
-import static org.testng.Assert.*;
-import org.testng.annotations.Test;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
- * TODO: Use JUnit
- * @author Reyhan
+ *
+ * @author ite102770
  */
-public class Grpxx_ueb02NGTest {
+public class Grp22_ueb02Test {
     
-    public Grpxx_ueb02NGTest() {
+    public Grp22_ueb02Test() {
     }
 
     @Test

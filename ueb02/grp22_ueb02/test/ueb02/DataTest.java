@@ -5,16 +5,18 @@
  */
 package ueb02;
 
-import static org.testng.Assert.*;
-import org.testng.annotations.Test;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 /**
- * TODO: Use JUnit
- * @author Reyhan
+ *
+ * @author ite102770
  */
-public class DataNGTest {
+public class DataTest {
     
-    public DataNGTest() {
+    public DataTest() {
     }
 
     @Test

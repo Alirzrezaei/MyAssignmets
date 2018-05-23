@@ -5,16 +5,18 @@
  */
 package ueb02;
 
-import static org.testng.Assert.*;
-import org.testng.annotations.Test;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 /**
- * TODO: Use JUnit
- * @author Reyhan
+ *
+ * @author ite102770
  */
-public class ArrayToolsNGTest {
+public class ArrayToolsTest {
     
-    public ArrayToolsNGTest() {
+    public ArrayToolsTest() {
     }
 
     @Test
@@ -67,14 +69,16 @@ public class ArrayToolsNGTest {
         public void deleteElementAtTest_invalidIndex(){
         int [] array = {1,2,3,4};
         assertEquals(null, ArrayTools.deleteElementAt(array, 5));
-        //assertNull(array);
+        assertEquals(null, ArrayTools.deleteElementAt(array, -1));
     }
-        @Test 
+    @Test 
         public void deleteElementAtTest_oneElement(){
         int [] array = {1};
         assertEquals(0, ArrayTools.deleteElementAt(array, 0).length);
+        assertEquals(new int[0] , ArrayTools.deleteElementAt(array, 0));
     }
-        @Test 
+ 
+    @Test 
         public void deleteElementAtTest_LastElement(){
         int [] array = {1, 1, 3, 3, 4};
         assertEquals(4, ArrayTools.deleteElementAt(array, 4).length);
@@ -111,10 +115,11 @@ public class ArrayToolsNGTest {
     public void insertElementAtTest_InvalIndex(){
         int [] array = {1};
         assertEquals(null, ArrayTools.insertElementAt(array, 2, 6));
+        assertEquals(null, ArrayTools.insertElementAt(array,-1, -1));
     }
      @Test 
     public void insertElementAtTest_InvalIndexNegative(){
-        int [] array = {1};
+        int [] array = {};
         assertEquals(null, ArrayTools.insertElementAt(array, -1, 6));
     }
     
@@ -125,12 +130,22 @@ public class ArrayToolsNGTest {
         assertEquals(3, ArrayTools.getLengthOfLongestArray(array));
         
     }
-       @Test 
+    @Test 
     public void TestgetMaxLength_emptyArray(){
         int [][] array = {};
         assertEquals( -1, ArrayTools.getLengthOfLongestArray(array));
     }
-        @Test 
+     @Test 
+    public void TestgetMaxLength_nullArray(){
+        int [][] array = null;
+        assertEquals( -1, ArrayTools.getLengthOfLongestArray(array));
+    }
+    @Test 
+    public void TestgetMaxLength_nullinsideArray(){
+        int [][] array = {null};
+        assertEquals( -1, ArrayTools.getLengthOfLongestArray(array));
+    }
+    @Test 
     public void TestgetMaxLength_equalLength(){
          int [][] array = {{1, 2} , {3, 4, 5} , {1, 3, 2}};
         assertEquals( 3, ArrayTools.getLengthOfLongestArray(array));
