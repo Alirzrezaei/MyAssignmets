@@ -150,7 +150,7 @@ public class AnalyzeTest {
    @Test
    public void testGetPrintWidthPerColumn2(){
        Analyze.resetToOrigState();
-        assertEquals(0, Analyze.GetPrintWidthPerColumn(1));
+        assertEquals(-1, Analyze.GetPrintWidthPerColumn(1));
    }
     @Test
    public void testGetPrintWidthPerColumn3(){
