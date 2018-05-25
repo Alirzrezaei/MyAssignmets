@@ -150,6 +150,12 @@ public class ArrayToolsTest {
          int [][] array = {{1, 2} , {3, 4, 5} , {1, 3, 2}};
         assertEquals( 3, ArrayTools.getLengthOfLongestArray(array));
     }
+    @Test 
+    public void TestgetMaxLength_Length(){
+         int [][] array = {{} ,{} ,{0} ,{}};
+     assertEquals(1, ArrayTools.getLengthOfLongestArray(array));
+    }
+    
     @Test
     public void testIsEmpty(){
         int [] array = {}; 

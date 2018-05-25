@@ -107,23 +107,22 @@ public class ArrayTools {
      * @return length of longest array in given array, -1 if array is null or
      * length of array is 0
      */
-    // TODO: Handle null arrays and null values inside the array    
+    // TODO DONE: Handle null arrays and null values inside the array    
     public static int getLengthOfLongestArray(int[][] array) {
 
+        int length = -1;
         if (array != null && array.length > 0) {
-            int length = 0;
-            if (array.length > 0) {
-                for (int i = 0; i < array.length; i++) {
-                    if(isEmpty(array[i])){
-                        return -1;
-                    }
-                    if (array[i].length > length) {
-                        length = array[i].length;
-                    }
+
+            for (int i = 0; i < array.length; i++) {
+
+                if (!isEmpty(array[i]) && array[i].length > length) {
+                    length = array[i].length;
+
                 }
-                return length;
+
             }
+
         }
-        return -1;
+        return length;
     }
 }
